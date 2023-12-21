@@ -37,6 +37,28 @@
       align-items: center;
       justify-content: center;
     }
+
+    details {
+      font-size:18x;
+      font-weight: bold;
+    }
+
+    details summary {
+      list-style: none;
+      cursor: pointer;
+    }
+
+    details summary::before {
+      content: '❤️';
+      display: inline-block;
+      margin-right: 5px; 
+    }
+    details div {
+      padding: 10px;
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+      margin-top: 5px;
+    }
   </style>
 
   <script type="module">
@@ -53,8 +75,23 @@
     <img src="2조.png" alt="사진첨부">
     <span>
       <h2>Our_stage 2조</h2>
-      <br>
-      <p>간단한 소개</p>
+      <br>  
+      <details>
+        <summary>조원 이름</summary>
+        <p>박강토, 김연재, 정해준, 정보연, 김형민</p>
+     </details>
+     <details>
+      <summary>우리 팀만의 목표</summary>
+      <p>힘을 합쳐 완성하기!</p>
+   </details>
+   <details>
+    <summary>우리팀 약속</summary>
+    <p>캠키기, 마이크를 이용 할 떈 부담없이 사용하기</p>
+  </details>
+  <details>
+    <summary>블로그 주소</summary>
+    <p>주소</p>
+  </details>
     </span>
   </div>
 
