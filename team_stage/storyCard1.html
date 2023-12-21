@@ -8,6 +8,14 @@
     .image {
       display: flex;
       justify-content: center;
+      width: 100%;
+      height: 50vh;      
+    }
+    .images {
+      border-radius: 20%;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
     .story {
       display: flex;
@@ -46,7 +54,9 @@
 </head>
 <body>
   <div class="image">
-    <img src="사진.jpg" alt="">
+    <a href="index.html">
+      <img class="images" src="사진.jpg" alt="이미지를 누르면 연결됩니다.">
+    </a>
   </div>
   <div class="story">
     <h1>이름</h1>
