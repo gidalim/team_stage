@@ -15,6 +15,14 @@
     body {
       margin-left: 10px;
     }
+    h1 {
+      display: flex;
+      justify-content: center;
+    }
+    h2 {
+      display: flex;
+      justify-content: center;
+    }
     .main1 {
       display: flex;
       flex-direction: row;
@@ -43,11 +51,10 @@
   <h2>우리의 stage</h2>
 ​
   <div class="main1">
-    
+    <img src="" alt="사진첨부">
     <p>
       여기에 팀 소개 내용이 들어갈꺼 같습니다.
     </p>
-    <img src="" alt="사진첨부">
   </div>
   <div>
     <h2>팀의 대한 사소한 설명이 들어갈꺼 같습니다.</h2>
@@ -57,7 +64,7 @@
   </div>
   <button id="storybtn" type="button" class="btn btn-outline-primary">우리들의 이야기</button>
   <div id="story" class="images">
-    <div class="row row-cols-1 row-cols-md-4 g-4">
+    <div class="row row-cols-1 row-cols-md-5 g-4">
       <div class="col">
         <div class="card h-100">
           <img src="..." class="card-img-top" alt="...">
@@ -106,8 +113,21 @@
           </div>
         </div>
       </div>
+      <div class="col">
+        <div class="card h-100">
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+          </div>
+          <div class="card-footer">
+            <small class="text-body-secondary">Last updated 3 mins ago</small>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+  
 </body>
 ​
 </html>
