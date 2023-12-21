@@ -5,6 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>stage 팀 소개</title>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 ​
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -25,6 +27,12 @@
       justify-content: center;
     }
   </style>
+
+  <script type="module">
+     $("#storybtn").click(async function () {
+            $('#story').toggle();
+        })
+  </script>
 </head>
 ​
 <body>
@@ -44,7 +52,8 @@
       부가적인 내용들이 들어갈꺼 같습니다.
     </p>
   </div>
-  <div class="images">
+  <button id="storybtn" type="button" class="btn btn-outline-primary">우리들의 이야기</button>
+  <div id="story" class="images">
     <div class="row row-cols-1 row-cols-md-4 g-4">
       <div class="col">
         <div class="card h-100">
