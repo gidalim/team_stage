@@ -17,7 +17,6 @@ html {
 
 body {
 	width: 100%;
-	background: linear-gradient(40deg, rgb(229, 197, 233), rgb(25, 71, 75), #15194e);
 }
 
 a {
@@ -29,11 +28,6 @@ a {
 	justify-content: space-around;
 	width: 100%;
 	height: 50vh;
-}
-
-.cardMain #photo {
-	border: 1px solid #fff;
-	box-shadow: 0 0 10px 0 #fff;
 }
 
 .cardImages {
@@ -48,29 +42,6 @@ a {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	color: #fff;
-	text-shadow: 3px 4px 5px #111;
-}
-
-p {
-	font-size: 20px;
-}
-/*블로그, 깃허브 링크 걸기 추가 및 색상 변경*/
-.cardStory a {
-	font-size: 20px;
-}
-
-.cardStory a:link {
-	color: #fff;
-}
-
-.cardStory a:link:hover {
-	color: lightgray;
-
-}
-
-.cardStory a:visited {
-	color: antiquewhite;
 }
 
 .comment {
@@ -81,7 +52,7 @@ p {
 	margin-top: 50px;
 }
 .commentBox {
-	padding-left: 20px;
+padding-left: 20px;
 }
 
 .CommentInput {
