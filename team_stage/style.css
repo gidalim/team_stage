@@ -1,0 +1,57 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	height: 100vh;
+}
+
+body {
+	margin-left: 20px;
+	font-family: 'Ubuntu', sans-serif;
+}
+
+#team-title {
+	display: flex;
+	justify-content: center;
+	font-weight: bold;
+}
+
+.main1 {
+	margin-top: 20px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-evenly;
+}
+
+.images {
+	margin: 50px auto 0px auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+details {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+details summary {
+	list-style: none;
+	cursor: pointer;
+}
+
+details summary::before {
+	content: '❤️';
+	display: inline-block;
+	margin-right: 5px;
+}
+
+details div {
+	padding: 10px;
+	background-color: #f0f0f0;
+	border: 1px solid #ccc;
+	margin-top: 5px;
+}
