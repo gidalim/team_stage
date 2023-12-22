@@ -31,9 +31,16 @@ body {
 .main1 {
 	margin-top: 20px;
 	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: space-evenly;
+	justify-content: space-around;
+	padding: 10px;
+	height: 500px;
+	width: 1200px;
+}
+
+.main1-right {
+	display: block;
+	width: 500px;
+	margin-left: 50px;
 }
 
 .images {
@@ -43,9 +50,19 @@ body {
 	justify-content: center;
 }
 
+#story img {
+	display: block;
+	height: 250px;
+}
+
 details {
 	font-size: 20px;
 	font-weight: bold;
+}
+
+details .cam {
+	font-size: 15px;
+	font-weight: 800;
 }
 
 details summary {
