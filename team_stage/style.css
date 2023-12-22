@@ -4,7 +4,7 @@
 }
 
 body {
-	width: 100%;
+	width: 1300px;
 }
 
 .container {
@@ -104,8 +104,6 @@ a {
   margin-top: 50px;
 }
 .commentBox {
-    width: 600px;
-    height: 300px;
     margin: 20px auto 20px auto;
     padding-left: 10%;
 
