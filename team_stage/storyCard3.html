@@ -37,13 +37,14 @@
 			const app = initializeApp(firebaseConfig);
 			const db = getFirestore(app);
 
+			// 삭제기능 비밀번호가 계속 틀리다는 오류 //
 			$(document).on('click', '#card .delete-btn', function () {
-				const enteredPassword = prompt('Enter the password to delete the comment:');
+				const enteredPassword = prompt('삭제하시려면 비밀번호를 입력해주세요:');
 				const storedPassword = 'your_actual_stored_password';
 				if (enteredPassword === storedPassword || enteredPassword === null) {
 					$(this).closest('.col').remove();
 				} else {
-					alert('Incorrect password. Deletion failed.');
+					alert('비밀번호가 틀립니다.');
 				}
 			});
 
