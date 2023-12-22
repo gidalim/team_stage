@@ -3,10 +3,6 @@
 	padding: 0;
 }
 
-html {
-	height: 100vh;
-}
-
 body {
 	width: 100%;
 }
@@ -103,7 +99,19 @@ details div {
   align-items: center;
   margin-top: 50px;
 }
+.commentBox {
+    width: 600px;
+    height: 300px;
+    margin: 20px auto 20px auto;
+    padding-left: 200px;
+
+    display: flex;
+    flex-direction: row;
+
+    border: 1px solid black;
+  }
 
 .CommentInput {
 	margin-left: 20px;
 }
+
