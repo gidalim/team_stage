@@ -1,0 +1,126 @@
+* {
+	margin: 0;
+	padding: 0;
+	font-family: 'Cafe24Supermagic-Bold-v1.0';
+}
+
+@font-face {
+	font-family: 'Cafe24Supermagic-Bold-v1.0';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/Cafe24Supermagic-Bold-v1.0.woff2') format('woff2');
+	font-weight: 700;
+	font-style: normal;
+}
+
+body {
+	width: 100%;
+	background: linear-gradient(40deg, rgb(229, 197, 233), rgb(25, 71, 75), #15194e);
+}
+.container {
+	margin-left: 20px;
+	font-family: 'Ubuntu', sans-serif;
+	height: 100vh;
+	box-shadow: 0 0 30px 0 black;
+	border-radius: 10px;
+	padding-bottom: 950px;
+    margin-bottom: 20px;
+}
+
+.wrap-top {
+	padding-top: 30px;
+}
+
+#team-title {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-top: 10px;
+	margin-bottom: 50px;
+	font-weight: 800;
+	font-size: 50px;
+	color: #fff;
+	text-shadow: 3px 4px 5px black;
+}
+
+.photo-title {
+	font-weight: bold;
+	font-size: 30px;
+}
+
+.main1 {
+	margin-top: 20px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-evenly;
+	color: #fff;
+}
+
+.main1-right {
+	width: 360px;
+	height: 446px;
+	text-shadow: 3px 4px 5px #111;
+}
+
+.main1-right summary:hover {
+	color: #999;
+}
+
+.images {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#story img {
+	display: block;
+	height: 250px;
+}
+
+#story div .col {
+	border-radius: 30px;
+}
+
+/* hover 음영 좀 더 넓게 */
+#story div .col:hover {
+	box-shadow: 0 0 5px 0 #fff;
+}
+
+#story div .col:hover {
+	box-shadow: 0 0 10px 0 #fff;
+}
+
+#story div .col:hover {
+	box-shadow: 0 0 20px 0 #fff;
+}
+
+#story div .col:hover {
+	box-shadow: 0 0 30px 0 #fff;
+}
+
+details {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+details summary {
+	list-style: none;
+	cursor: pointer;
+}
+
+details summary::before {
+	content: '❤️';
+	display: inline-block;
+	margin-right: 5px;
+}
+
+details div {
+	padding: 10px;
+	background-color: #f0f0f0;
+	border: 1px solid #ccc;
+	margin-top: 5px;
+}
+
+.card-img-top {
+	height: 45vh;
+}
