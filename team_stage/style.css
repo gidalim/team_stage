@@ -71,7 +71,7 @@ body {
 	height: 450px;
 }
 
-.main1 #summary-color:hover {
+.main1 summary:hover {
 	color: slateblue;
 }
 
