@@ -17,7 +17,7 @@ html {
 
 body {
 	width: 100%;
-	background: linear-gradient(40deg, rgb(26, 86, 90), rgb(22, 21, 94), rgb(236, 147, 162));
+	background: linear-gradient(40deg, rgb(229, 197, 233), rgb(25, 71, 75), #15194e);
 }
 
 a {
@@ -29,6 +29,10 @@ a {
 	justify-content: space-around;
 	width: 100%;
 	height: 50vh;
+}
+
+.cardMain #photo {
+	border: 2px solid #fff;
 }
 
 .cardImages {
