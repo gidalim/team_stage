@@ -64,5 +64,80 @@
     <p>블로그</p>
     <p>Github</p>
   </div>
+  $(document).ready(function() {
+  function initComment() {
+    var commentEmpty = $('div[ux-name="commentEmpty"]');
+    var comment = $this.findName('comment');
+    var userinfo;
+    $ux.data.query({
+        id: 'BMP_IDEA_VIEW.GET.COMMENT',
+        version: '00001',
+        parameter: {
+            IDEAID: IDEAID
+        },
+        reply: function(e) {
+            commentEmpty.html('');
+            var data = e.result;
+            for (var i = 0; i < data.length; i++) {
+                var user = data[i].DEPARTMENT + ' ) ' + data[i].USERNAME;
+                var content = data[i].CONTENT;
+                var time = data[i].CREATEDTIME;
+                var rid = data[i].REPLYID;
+                var seq = data[i].SEQ;
+                var isme;
+                if (data[i].USERID == $ux.user.id()) {
+                    isme = 'Y';
+                } else {
+                    isme = 'N';
+                }
+                if (data[i].SEQ == 0) {
+                    commentEmpty.append(makeCommentTable(user, content, time, rid, isme));
+                } else {
+                    commentEmpty.append(makeReReplytable(user, rid, content, time, isme, seq));
+                }
+
+            }
+            //totalCommentLabel.tool().setValue('전체 댓글 ' + $('div[ux-name="commentEmpty"] table').length + ' 건');
+            if (replyCount())
+                totalCommentLabel.tool().setValue('ㅤㅤ전체 댓글 ' + replyCount() + ' 건');
+            else
+                totalCommentLabel.tool().setValue('ㅤㅤ전체 댓글 0 건');
+            /*댓글 기능*/
+            $('button[btnType="reply"]').click(function(e) {
+                var parentTable = this.parentElement.parentElement.parentElement.parentElement;
+                var rid = parentTable.id.split('replyIdNo')[1];
+                $(parentTable).after(makeReReply(user, rid));
+                var length = $('div[ux-name="commentEmpty"] table').length;
+                var top = 60 * length + 855;
+                var orignTop = replyEmpty.tool().setTopPositionValue(top + 'px');
+                //대댓글달기 취소
+                $('button[btnType="reCancle"]').click(function(er) {
+                    this.parentElement.parentElement.parentElement.parentElement.remove();
+                    var length = $('div[ux-name="commentEmpty"] table').length;
+                    var top = 60 * length + 855;
+                    var orignTop = replyEmpty.tool().setTopPositionValue(top + 'px');
+                });
+                //대댓글 등록하기
+                $('button[btnType="reCommit"]').click(function(er) {
+
+                    var rid = this.parentElement.parentElement.parentElement.parentElement.id.split('replyIdNo')[1];
+                    var content = $('#commentCommit')[0].value;
+                    $ux.cjMessage.confirm('댓글을 등록하시겠습니까?', null, function() {
+                        $ux.request({
+                            name: 'BmpIdeaSaveReComment',
+                            value: {
+                                REPLYID: rid,
+                                CONTENT: content,
+                                IDEAID: IDEAID
+                            },
+                            reply: function(e) {
+                                initComment();
+
+                            }
+                        });
+                    });
+                });
+            });
+          });
 </body>
 </html>
