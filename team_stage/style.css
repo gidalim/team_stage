@@ -103,3 +103,11 @@ details div {
   align-items: center;
   margin-top: 50px;
 }
+
+.commentBox {
+background-color: green;
+
+  width: 600px;
+  height: 300px;
+  margin: 20px auto 20px auto;
+}
