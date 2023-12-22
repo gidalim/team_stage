@@ -32,6 +32,12 @@ a {
 	height: 50vh;
 }
 
+.cardMain a {
+	margin: 10px;
+	font-size: 22px;
+	color: #fffffe;
+}
+
 .cardMain #photo {
 	border: 1px solid #fff;
 	box-shadow: 0 0 10px 0 #fff;
