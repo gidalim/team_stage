@@ -109,3 +109,17 @@ details div {
 .card-img-top {
 	height: 45vh;
 }
+
+h2 {
+	color: #00008b;
+}
+
+p {
+	color: aliceblue;
+	text-shadow: 2px 2px #00008b;
+}
+
+summary {
+	color:aliceblue;
+	text-shadow: 2px 2px #00008b;
+}
