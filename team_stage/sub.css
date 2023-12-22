@@ -1,0 +1,101 @@
+* {
+	margin: 0;
+	padding: 0;
+	font-family: 'Cafe24Supermagic-Bold-v1.0';
+}
+
+@font-face {
+	font-family: 'Cafe24Supermagic-Bold-v1.0';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/Cafe24Supermagic-Bold-v1.0.woff2') format('woff2');
+	font-weight: 700;
+	font-style: normal;
+}
+
+html {
+	height: 100vh;
+}
+
+body {
+	width: 100%;
+	background: linear-gradient(40deg, rgb(229, 197, 233), rgb(25, 71, 75), #15194e);
+}
+
+a {
+	text-decoration-line: none;
+}
+
+.cardMain {
+	display: flex;
+	justify-content: space-evenly;
+	width: 100%;
+	height: 50vh;
+}
+
+.cardMain #photo {
+	border: 1px solid #fff;
+	box-shadow: 0 0 10px 0 #fff;
+}
+
+.cardImages {
+	border-radius: 20%;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	width: 400px;
+	height: 550px;
+	margin-top: 50px;
+}
+
+.cardStory {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	color: #fff;
+	text-shadow: 3px 4px 5px #111;
+}
+
+p {
+	font-size: 20px;
+}
+/*블로그, 깃허브 링크 걸기 추가 및 색상 변경*/
+.cardStory a {
+	font-size: 20px;
+}
+
+.cardStory a:link {
+	color: #fff;
+}
+
+.cardStory a:link:hover {
+	color: lightgray;
+}
+
+.cardStory a:visited {
+	color: antiquewhite;
+}
+
+.comment {
+	width: 1200px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 300px auto 30px auto;
+	padding: 100px;
+}
+
+.comment .row {
+	margin: 10px;
+}
+
+.comment .row .col-auto button {
+	margin: 3px;
+	width: 65px;
+}
+.commentBox {
+	padding-left: 20px;
+}
+
+.CommentInput {
+	margin-left: 20px;
+}
