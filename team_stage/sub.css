@@ -84,16 +84,23 @@ p {
 	padding: 100px;
 }
 
-.comment .row {
-	margin: 10px;
+.comment .row #comment {
+	width: 300px;
 }
 
-.comment .row .col-auto button {
+.comment .row .comment .row .col-auto button {
 	margin: 3px;
 	width: 65px;
 }
 .commentBox {
 	padding-left: 20px;
+}
+
+.commentBox #cards {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 }
 
 .CommentInput {
