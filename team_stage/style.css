@@ -70,6 +70,9 @@ details div {
 	margin-top: 5px;
 }
 
+.card-img-top {
+	height: 45vh;
+}
 
 /* 서브페이지 CSS */
 .cardMain {
