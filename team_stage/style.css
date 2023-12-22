@@ -15,9 +15,9 @@
 }
 
 body {
-	width: 1300px;
+	width: 100%;
+	background: linear-gradient(40deg, rgb(229, 197, 233), rgb(25, 71, 75), #15194e);
 }
-
 .container {
 	margin-left: 20px;
 	font-family: 'Ubuntu', sans-serif;
