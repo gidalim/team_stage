@@ -71,6 +71,10 @@ details div {
 }
 
 /* 서브페이지 CSS */
+a {
+	text-decoration-line:none;
+}
+
 .cardMain {
   display: flex;
   justify-content: space-around;
