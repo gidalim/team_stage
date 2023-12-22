@@ -43,7 +43,7 @@ a {
 	object-fit: cover;
 	width: 400px;
 	height: 550px;
-	margin-top: 50px;
+	margin-top: 30px;
 }
 
 .cardStory {
@@ -76,11 +76,10 @@ p {
 }
 
 .comment {
-	width: 1200px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin: 300px auto 30px auto;
+	margin: 30px auto 30px auto;
 	padding: 100px;
 }
 
