@@ -23,6 +23,10 @@ body {
 	border-radius: 10px;
 }
 
+.wrap-top {
+	padding-top: 30px;
+}
+
 #team-title {
 	display: flex;
 	flex-direction: column;
@@ -33,6 +37,7 @@ body {
 	font-weight: 800;
 	font-size: 50px;
 	color: #fff;
+	padding-bottom: 20px;
 }
 
 .photo-title {
@@ -49,11 +54,20 @@ body {
 	color: #fff;
 }
 
+.main1-right {
+	width: 360px;
+	height: 446px;
+}
+
 .images {
 	margin: 50px auto 0px auto;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+#story {
+	padding-top: 100px;
 }
 
 #story img {
