@@ -18,8 +18,18 @@ body {
 
 #team-title {
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
+	align-items: center;
+	margin-top: 100px;
+	margin-bottom: 50px;
+	font-weight: 800;
+	font-size: 50px;
+}
+
+.photo-title {
 	font-weight: bold;
+	font-size: 30px;
 }
 
 .main1 {
@@ -28,6 +38,7 @@ body {
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-evenly;
+	border: 2px solid coral;
 }
 
 .images {
