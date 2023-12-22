@@ -17,6 +17,7 @@ html {
 
 body {
 	width: 100%;
+	background: linear-gradient(40deg, rgb(26, 86, 90), rgb(22, 21, 94), rgb(236, 147, 162));
 }
 
 a {
@@ -52,7 +53,7 @@ a {
 	margin-top: 50px;
 }
 .commentBox {
-padding-left: 20px;
+	padding-left: 20px;
 }
 
 .CommentInput {
