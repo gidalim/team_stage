@@ -32,6 +32,7 @@ body {
 	font-family: 'Ubuntu', sans-serif;
 	height: 100vh;
 	box-shadow: 0 0 10px 0 black;
+	border-radius: 10px;
 }
 
 #team-title {
@@ -89,6 +90,27 @@ body {
 #story img {
 	display: block;
 	height: 250px;
+}
+
+#story div .col {
+	border-radius: 30px;
+}
+
+/* hover 음영 좀 더 넓게 */
+#story div .col:hover {
+	box-shadow: 0 0 5px 0 #fff;
+}
+
+#story div .col:hover {
+	box-shadow: 0 0 10px 0 #fff;
+}
+
+#story div .col:hover {
+	box-shadow: 0 0 20px 0 #fff;
+}
+
+#story div .col:hover {
+	box-shadow: 0 0 30px 0 #fff;
 }
 
 details {
