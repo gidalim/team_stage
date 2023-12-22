@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,8 +16,8 @@
   <link rel="stylesheet" href="sub.css" />
   <!-- //css -->
 
-    
 
+    
   <script type="module">
     // Firebase SDK 라이브러리 가져오기
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
@@ -41,13 +42,14 @@
     const db = getFirestore(app);
 
   </script>
- 
+
 </head>
 
 <body>
   <a href="index.html">❌</a>
   <div class="cardMain">
     <div>
+			<!-- 사진첨부 -->
       <img class="cardImages" src="..." alt="이미지를 누르면 연결됩니다." />
     </div>
     <div class="cardStory">
@@ -58,25 +60,25 @@
     </div>
   </div>
 
-  <form class="comment" id="commentForm">
-	<div class="row">
-	  <div class="col">
-		<input name="title" type="text" class="form-control" placeholder="닉네임" aria-label="First name" />
-	  </div>
-	  <div class="col-auto">
-		<label for="inputPassword2" class="visually-hidden">Password</label>
-		<input name="Password" type="password" class="form-control" id="Password" placeholder="Password" />
-	  </div>
-	  <div class="col">
-		<input name="comment" type="text" class="form-control" placeholder="comment" aria-label="Last name" />
-	  </div>
-	  <div class="col-auto">
-		<button type="submit" class="btn btn-primary mb-3">저장</button>
-		<button type="submit" class="btn btn-primary mb-3">취소</button>
-	  </div>
-	</div>
+  <form class="comment">
+    <div class="row">
+      <div class="col">
+        <input  type="text" class="form-control" placeholder="닉네임" aria-label="First name" />
+      </div>
+      <div class="col-auto">
+        <label for="inputPassword2" class="visually-hidden">Password</label>
+        <input type="password" class="form-control" id="Password" placeholder="Password" />
+      </div>
+      <div class="col">
+        <input id="comment" type="text" class="form-control" placeholder="comment" aria-label="Last name" />
+      </div>
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-3">저장</button>
+        <button type="submit" class="btn btn-primary mb-3">취소</button>
+      </div>
+    </div>
   </form>
-  
+
 
   <div class="commentBox">
     <div id="cards" class="row row-cols-1 row-cols-md-4 g-4">
@@ -96,3 +98,5 @@
 </body>
 
 </html>
+
+

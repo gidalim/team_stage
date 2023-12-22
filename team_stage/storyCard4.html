@@ -1,145 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>소개하기</title>
-		<link rel="stylesheet" href="sub.css" />
 
-		<script type="module">
-			// Firebase SDK 라이브러리 가져오기
-			import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
-			import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js';
-			import { collection, addDoc } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js';
-			import { getDocs } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js';
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>소개하기</title>
 
-			// Firebase 구성 정보 설정
-			const firebaseConfig = {
-				// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-				apiKey: 'AIzaSyDcQ6Q78akg6Oo9Z2VO5APf-QQ7S7kn9DQ',
-				authDomain: 'our-stage.firebaseapp.com',
-				projectId: 'our-stage',
-				storageBucket: 'our-stage.appspot.com',
-				messagingSenderId: '999213003989',
-				appId: '1:999213003989:web:774432a35de3c233c69e5c',
-				measurementId: 'G-G2QMB19RVB',
-			};
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- //jQuery -->
 
-<<<<<<< HEAD
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+  <!-- //bootstrap -->
+
+  <link rel="stylesheet" href="sub.css" />
+  <!-- //css -->
+
+  <script type="module">
+    // Firebase SDK 라이브러리 가져오기
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
+    import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js';
+    import { collection, addDoc } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js';
+    import { getDocs } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js';
+
+    // Firebase 구성 정보 설정
+    const firebaseConfig = {
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      apiKey: 'AIzaSyDcQ6Q78akg6Oo9Z2VO5APf-QQ7S7kn9DQ',
+      authDomain: 'our-stage.firebaseapp.com',
+      projectId: 'our-stage',
+      storageBucket: 'our-stage.appspot.com',
+      messagingSenderId: '999213003989',
+      appId: '1:999213003989:web:774432a35de3c233c69e5c',
+      measurementId: 'G-G2QMB19RVB',
+    };
 
     // Firebase 인스턴스 초기화
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
-
-
   </script>
 </head>
+
 <body>
-  <div class="image">
-    <a href="index.html">
-      <img class="images" src="사진.jpg" alt="이미지를 누르면 연결됩니다.">
-    </a>
+  <a href="index.html">❌</a>
+  <div class="cardMain">
+    <div>
+			<!-- 사진첨부 -->
+      <img class="cardImages" src="..." alt="이미지를 누르면 연결됩니다." />
+    </div>
+    <div class="cardStory">
+      <h1>이름</h1>
+      <p>자신의 소개문</p>
+      <p>블로그</p>
+      <p>Github</p>
+    </div>
   </div>
-  <div class="story">
-    <h1>이름</h1>
-    <p>자신의 소개문</p>
-    <p>블로그</p>
-    <p>Github</p>
+
+  <form class="comment">
+    <div class="row">
+      <div class="col">
+        <input  type="text" class="form-control" placeholder="닉네임" aria-label="First name" />
+      </div>
+      <div class="col-auto">
+        <label for="inputPassword2" class="visually-hidden">Password</label>
+        <input type="password" class="form-control" id="Password" placeholder="Password" />
+      </div>
+      <div class="col">
+        <input id="comment" type="text" class="form-control" placeholder="comment" aria-label="Last name" />
+      </div>
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-3">저장</button>
+        <button type="submit" class="btn btn-primary mb-3">취소</button>
+      </div>
+    </div>
+  </form>
+
+  <div class="commentBox">
+    <div id="cards" class="row row-cols-1 row-cols-md-4 g-4">
+      <div class="col">
+        <div class="card border-info mb-3" style="max-width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">닉네임</h5>
+            <p class="card-text">comment</p>
+            <button type="button" class="btn btn-outline-warning">수정</button>
+            <button type="button" class="btn btn-outline-danger">삭제</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  $(document).ready(function() {
-  function initComment() {
-    var commentEmpty = $('div[ux-name="commentEmpty"]');
-    var comment = $this.findName('comment');
-    var userinfo;
-    $ux.data.query({
-        id: 'BMP_IDEA_VIEW.GET.COMMENT',
-        version: '00001',
-        parameter: {
-            IDEAID: IDEAID
-        },
-        reply: function(e) {
-            commentEmpty.html('');
-            var data = e.result;
-            for (var i = 0; i < data.length; i++) {
-                var user = data[i].DEPARTMENT + ' ) ' + data[i].USERNAME;
-                var content = data[i].CONTENT;
-                var time = data[i].CREATEDTIME;
-                var rid = data[i].REPLYID;
-                var seq = data[i].SEQ;
-                var isme;
-                if (data[i].USERID == $ux.user.id()) {
-                    isme = 'Y';
-                } else {
-                    isme = 'N';
-                }
-                if (data[i].SEQ == 0) {
-                    commentEmpty.append(makeCommentTable(user, content, time, rid, isme));
-                } else {
-                    commentEmpty.append(makeReReplytable(user, rid, content, time, isme, seq));
-                }
 
-            }
-            //totalCommentLabel.tool().setValue('전체 댓글 ' + $('div[ux-name="commentEmpty"] table').length + ' 건');
-            if (replyCount())
-                totalCommentLabel.tool().setValue('ㅤㅤ전체 댓글 ' + replyCount() + ' 건');
-            else
-                totalCommentLabel.tool().setValue('ㅤㅤ전체 댓글 0 건');
-            /*댓글 기능*/
-            $('button[btnType="reply"]').click(function(e) {
-                var parentTable = this.parentElement.parentElement.parentElement.parentElement;
-                var rid = parentTable.id.split('replyIdNo')[1];
-                $(parentTable).after(makeReReply(user, rid));
-                var length = $('div[ux-name="commentEmpty"] table').length;
-                var top = 60 * length + 855;
-                var orignTop = replyEmpty.tool().setTopPositionValue(top + 'px');
-                //대댓글달기 취소
-                $('button[btnType="reCancle"]').click(function(er) {
-                    this.parentElement.parentElement.parentElement.parentElement.remove();
-                    var length = $('div[ux-name="commentEmpty"] table').length;
-                    var top = 60 * length + 855;
-                    var orignTop = replyEmpty.tool().setTopPositionValue(top + 'px');
-                });
-                //대댓글 등록하기
-                $('button[btnType="reCommit"]').click(function(er) {
-
-                    var rid = this.parentElement.parentElement.parentElement.parentElement.id.split('replyIdNo')[1];
-                    var content = $('#commentCommit')[0].value;
-                    $ux.cjMessage.confirm('댓글을 등록하시겠습니까?', null, function() {
-                        $ux.request({
-                            name: 'BmpIdeaSaveReComment',
-                            value: {
-                                REPLYID: rid,
-                                CONTENT: content,
-                                IDEAID: IDEAID
-                            },
-                            reply: function(e) {
-                                initComment();
-
-                            }
-                        });
-                    });
-                });
-            });
-          });
 </body>
-=======
-			// Firebase 인스턴스 초기화
-			const app = initializeApp(firebaseConfig);
-			const db = getFirestore(app);
-		</script>
-	</head>
-	<body>
-		<div class="image">
-			<a href="index.html">
-				<img class="images" src="사진.jpg" alt="이미지를 누르면 연결됩니다." />
-			</a>
-		</div>
-		<div class="story">
-			<h1>이름</h1>
-			<p>자신의 소개문</p>
-			<p>블로그</p>
-			<p>Github</p>
-		</div>
-	</body>
->>>>>>> 00e77575a55dfdd80e806a3dc87a80a567088665
+
 </html>

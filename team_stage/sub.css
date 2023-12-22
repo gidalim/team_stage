@@ -17,6 +17,7 @@ html {
 
 body {
 	width: 100%;
+	background: linear-gradient(40deg, rgb(229, 197, 233), rgb(25, 71, 75), #15194e);
 }
 
 a {
@@ -28,6 +29,11 @@ a {
 	justify-content: space-around;
 	width: 100%;
 	height: 50vh;
+}
+
+.cardMain #photo {
+	border: 1px solid #fff;
+	box-shadow: 0 0 10px 0 #fff;
 }
 
 .cardImages {
@@ -42,6 +48,23 @@ a {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	color: #fff;
+}
+a {
+	font-size: 18px;
+}
+
+a:link {
+	color:ivory;
+}
+a:hover { 
+	color:mediumvioletred;
+}
+a:visited {
+	color: beige;
+}
+a:active { 
+	color:darkorchid; 
 }
 
 .comment {
@@ -52,7 +75,7 @@ a {
 	margin-top: 50px;
 }
 .commentBox {
-padding-left: 20px;
+	padding-left: 20px;
 }
 
 .CommentInput {

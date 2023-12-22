@@ -19,12 +19,19 @@
 }
 
 body {
-	width: 1300px;
+	width: 100%;
+	background: linear-gradient(40deg, rgb(229, 197, 233), rgb(25, 71, 75), #15194e);
 }
 
 .container {
-	margin-left: 20px;
+	display: flex;
+	background-color: #f0f0f0;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 	font-family: 'Ubuntu', sans-serif;
+	height: 100vh;
+	box-shadow: 0 0 10px 0 black;
 }
 
 #team-title {
@@ -45,7 +52,7 @@ body {
 
 .main1 {
 	margin-top: 20px;
-	margin-left: 200px;
+	margin-left: 180px;
 	display: flex;
 	align-items: center;
 	justify-content: space-evenly;
@@ -68,7 +75,7 @@ body {
 	height: 450px;
 }
 
-.main1 #summary-color:hover {
+.main1 summary:hover {
 	color: slateblue;
 }
 
@@ -89,14 +96,10 @@ details {
 	font-weight: bold;
 }
 
-details .cam {
-	font-size: 15px;
-	font-weight: 800;
-}
-
 details summary {
 	list-style: none;
 	cursor: pointer;
+	font-size: 25px;
 }
 
 details summary::before {
@@ -142,6 +145,7 @@ a {
 }
 
 /* 서브페이지 CSS */
+/*
 a {
 	text-decoration-line: none;
 }
@@ -186,4 +190,4 @@ a {
 
 .CommentInput {
 	margin-left: 20px;
-}
+} */

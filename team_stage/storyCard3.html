@@ -40,29 +40,7 @@
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-     function makeCard() {
-      alert('연결확인');
-    };
-
-
-
-
-    let title = $('#title').val();
-    let Password = $('#Password').val();
-    let comment = $('#comment').val();
-
-    let temp_html = `            
-        <div class="col">
-          <div class="card border-info mb-3" style="max-width: 18rem;">
-            <div class="card-body">
-              <h5 class="card-title">${title}</h5>
-              <p class="card-text">${comment}</p>
-              <button type="button" class="btn btn-outline-warning">수정</button>
-              <button type="button" class="btn btn-outline-danger">삭제</button>
-            </div>
-          </div>
-        </div>`;
-    $('#cards').append(temp_html);
+    
   </script>
  
 </head>
