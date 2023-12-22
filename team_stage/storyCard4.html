@@ -16,6 +16,8 @@
   <link rel="stylesheet" href="sub.css" />
   <!-- //css -->
 
+
+    
   <script type="module">
     // Firebase SDK 라이브러리 가져오기
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
@@ -38,7 +40,9 @@
     // Firebase 인스턴스 초기화
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
+
   </script>
+
 </head>
 
 <body>
@@ -51,8 +55,8 @@
     <div class="cardStory">
       <h1>이름</h1>
       <p>자신의 소개문</p>
-      <p>블로그</p>
-      <p>Github</p>
+      <a href="xxx">블로그</a>
+      <a href="xxx">GitHub</a>
     </div>
   </div>
 
@@ -74,6 +78,7 @@
       </div>
     </div>
   </form>
+
 
   <div class="commentBox">
     <div id="cards" class="row row-cols-1 row-cols-md-4 g-4">
