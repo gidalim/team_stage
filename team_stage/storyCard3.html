@@ -16,72 +16,54 @@
 	<link rel="stylesheet" href="sub.css" />
 	<!-- //css -->
 
-	<script type="module">
-		// Firebase SDK 라이브러리 가져오기
-		import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
-		import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js';
-	
-		// Firebase 구성 정보 설정
-		const firebaseConfig = {
-			// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-			apiKey: 'AIzaSyDcQ6Q78akg6Oo9Z2VO5APf-QQ7S7kn9DQ',
-			authDomain: 'our-stage.firebaseapp.com',
-			projectId: 'our-stage',
-			storageBucket: 'our-stage.appspot.com',
-			messagingSenderId: '999213003989',
-			appId: '1:999213003989:web:774432a35de3c233c69e5c',
-			measurementId: 'G-G2QMB19RVB',
-		};
-	
-		// Firebase 인스턴스 초기화
-		const app = initializeApp(firebaseConfig);
-		const db = getFirestore(app);
-	
-		let Password; 
-	
-		$("#makeComment").click(async function () {
-			let title = $('#title').val();
-			Password = $('#Password').val();
-			let comment = $('#comment').val();
-			let temp_html = `
-				<div class="col">
-					<div class="card border-info mb-3" style="max-width: 18rem">
-						<div class="card-body" data-password="${Password}">
-							<h5 class="card-title">${title}</h5>
-							<p class="card-text">${comment}</p>
-							<button type="button" class="btn btn-outline-warning">수정</button>
-							<button type="button" class="btn btn-outline-danger delete-btn">삭제</button>
-						</div>
-					</div>
-				</div>`;
-			$('#card').append(temp_html);
-	
-			// 삭제기능 //
+		<script type="module">
+			// Firebase SDK 라이브러리 가져오기
+			import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
+			import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js';
+			import { collection, addDoc } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js';
+			import { getDocs } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js';
+
+			// Firebase 구성 정보 설정
+			const firebaseConfig = {
+				apiKey: 'AIzaSyDcQ6Q78akg6Oo9Z2VO5APf-QQ7S7kn9DQ',
+				authDomain: 'our-stage.firebaseapp.com',
+				projectId: 'our-stage',
+				storageBucket: 'our-stage.appspot.com',
+				messagingSenderId: '999213003989',
+				appId: '1:999213003989:web:774432a35de3c233c69e5c',
+				measurementId: 'G-G2QMB19RVB',
+			};
+
+			// Firebase 인스턴스 초기화
+			const app = initializeApp(firebaseConfig);
+			const db = getFirestore(app);
+
+			// 삭제기능 비밀번호가 계속 틀림 해결중... //
 			$(document).on('click', '#card .delete-btn', function () {
 				if ($(this).closest('.card-body').find('.password-input').length === 0) {
 					const passwordInput = $('<input>', {
 						type: 'password',
 						class: 'form-control password-input',
 						placeholder: 'Password',
-						style: 'margin-top: 10px; width: 200px; height: 30px;'
+						style: 'margin-top: 10px; width: 200px; height: 30px;',
 					});
-	
+
 					const deleteBtn = $(this);
 					const cardBody = deleteBtn.closest('.card-body');
-					const storedPassword = cardBody.data('password'); 
-	
+
 					cardBody.append(passwordInput);
-	
-					passwordInput.on('blur', function () { });
-	
+
+					passwordInput.on('blur', function () {});
+
 					passwordInput.on('keydown', function (e) {
 						if (e.key === 'Enter') {
 							const enteredPassword = $(this).val();
-	
+							const storedPassword = 'your_actual_stored_password';
+
 							if (enteredPassword === storedPassword) {
 								deleteBtn.closest('.col').remove();
 							} else {
-								alert("비밀번호가 틀립니다.");
+								alert('비밀번호가 틀립니다.');
 							}
 						}
 					});
@@ -89,24 +71,39 @@
 				} else {
 				}
 			});
-		});
-	</script>
-	
-</head>
+			$('#makeComment').click(async function () {
+				let title = $('#title').val();
+				let Password = $('#Password').val();
+				let comment = $('#comment').val();
+				let temp_html = `
+            <div class="col">
+                <div class="card border-info mb-3" style="max-width: 18rem">
+                    <div class="card-body">
+                        <h5 class="card-title">${title}</h5>
+                        <p class="card-text">${comment}</p>
+                        <button type="button" class="btn btn-outline-warning">수정</button>
+                        <button type="button" class="btn btn-outline-danger delete-btn">삭제</button>
+                    </div>
+                </div>
+            </div>`;
+				$('#card').append(temp_html);
+			});
+		</script>
+	</head>
 
-<body>
-	<a href="index.html">❌</a>
-	<div class="cardMain">
-		<div>
-			<img id="photo" class="cardImages" src="정해준사진.jpg" alt="이미지를 누르면 연결됩니다." />
+	<body>
+		<a href="index.html">❌</a>
+		<div class="cardMain">
+			<div>
+				<img id="photo" class="cardImages" src="정해준사진.jpg" alt="이미지를 누르면 연결됩니다." />
+			</div>
+			<div class="cardStory">
+				<h1>정해준</h1>
+				<p>경청을 잘 한다고 생각합니다.</p>
+				<a href="https://velog.io/@decidedcard">블로그</a>
+				<a href="https://github.com/DecidedCard">GitHub</a>
+			</div>
 		</div>
-		<div class="cardStory">
-			<h1>정해준</h1>
-			<p>경청을 잘 한다고 생각합니다.</p>
-			<a href="https://velog.io/@decidedcard">블로그</a>
-			<a href="https://github.com/DecidedCard">GitHub</a>
-		</div>
-	</div>
 
 	<form class="comment-wrap">
 		<div class="row">
