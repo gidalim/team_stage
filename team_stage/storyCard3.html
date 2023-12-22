@@ -44,7 +44,7 @@
                 type: 'password',
                 class: 'form-control password-input',
                 placeholder: 'Password',
-				style: 'margin-top: 10px; width: 200px; height: 30px;' 
+                style: 'margin-top: 10px; width: 200px; height: 30px;'
             });
 
             const deleteBtn = $(this);
@@ -52,25 +52,23 @@
 
             cardBody.append(passwordInput);
 
-            passwordInput.on('blur', function () {
-             });
-
             passwordInput.on('keydown', function (e) {
-    	     if (e.key === 'Enter') {
+                if (e.key === 'Enter') {
                     const enteredPassword = $(this).val();
                     const storedPassword = 'your_actual_stored_password';
 
                     if (enteredPassword === storedPassword) {
                         deleteBtn.closest('.col').remove();
                     } else {
-                        alert("비밀번호가 틀립니다.");
+                        alert("비밀번호가 틀립니다. 입력한 비밀번호: " + enteredPassword);
                     }
                 }
             });
-	       passwordInput.focus();
-        } else {
+
+            passwordInput.focus();
         }
     });
+
     $("#makeComment").click(async function () {
         let title = $('#title').val();
         let Password = $('#Password').val();
@@ -89,6 +87,7 @@
         $('#card').append(temp_html);
     });
 </script>
+
 </head>
 
 	<body>
