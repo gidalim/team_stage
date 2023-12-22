@@ -76,58 +76,37 @@ p {
 	color: antiquewhite;
 }
 
-.comment {
+.comment-wrap {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin: 30px auto 30px auto;
-	padding: 100px;
+	margin: 50px auto 30px auto;
 }
 
-.comment .row #comment {
+.comment-wrap .row #comment {
 	width: 300px;
 }
 
-.comment .row .comment .row .col-auto button {
-	margin: 3px;
+.comment-wrap .row .col-auto button {
 	width: 65px;
-}
-
-.comment .row .col-auto button {
 	margin: auto 5px auto 5px;
-}
-
-.commentBox {
-	padding-left: 20px;
+	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
 }
 
 .commentBox #card {
+	position: relative;
+	margin: 20px;
+	word-break: break-all;
+	border-radius: 8px;
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 }
-
 .commentBox #card .col {
-	width: 600px;
+	width: 1000px;
 }
 
 .commentBox #card .col .card-body {
-	display: flex;
-	flex-direction: row;
-}
-
-.commentBox #card .col .card-body .card-title,
-.commentBox #card .col .card-body .card-text {
-	margin-left: 10px;
-}
-
-.commentBox #card .col .card-body .card-text {
-	display: flex;
-	margin-right: 270px;
-}
-
-.commentBox #card .col .card-body button {
-	display: flex;
-	margin: 5px;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
 }
