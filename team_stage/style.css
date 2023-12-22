@@ -1,6 +1,7 @@
 * {
 	margin: 0;
 	padding: 0;
+	font-family: 'Cafe24Supermagic-Bold-v1.0';
 }
 
 @font-face {
@@ -8,10 +9,6 @@
 	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/Cafe24Supermagic-Bold-v1.0.woff2') format('woff2');
 	font-weight: 700;
 	font-style: normal;
-}
-
-* {
-	font-family: 'Cafe24Supermagic-Bold-v1.0';
 }
 
 body {
@@ -26,6 +23,10 @@ body {
 	border-radius: 10px;
 }
 
+.wrap-top {
+	padding-top: 30px;
+}
+
 #team-title {
 	display: flex;
 	flex-direction: column;
@@ -35,6 +36,9 @@ body {
 	margin-bottom: 50px;
 	font-weight: 800;
 	font-size: 50px;
+	color: #fff;
+	padding-bottom: 20px;
+	text-shadow: 3px 4px 5px black;
 }
 
 .photo-title {
@@ -48,6 +52,17 @@ body {
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-evenly;
+	color: #fff;
+}
+
+.main1-right {
+	width: 360px;
+	height: 446px;
+	text-shadow: 3px 4px 5px #111;
+}
+
+.main1-right summary:hover {
+	color: #999;
 }
 
 .images {
@@ -55,6 +70,10 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+#story {
+	padding-top: 100px;
 }
 
 #story img {
@@ -108,18 +127,4 @@ details div {
 
 .card-img-top {
 	height: 45vh;
-}
-
-h2 {
-	color: #00008b;
-}
-
-p {
-	color: aliceblue;
-	text-shadow: 2px 2px #00008b;
-}
-
-summary {
-	color:aliceblue;
-	text-shadow: 2px 2px #00008b;
 }
