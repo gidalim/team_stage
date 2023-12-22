@@ -36,6 +36,24 @@
 			// Firebase 인스턴스 초기화
 			const app = initializeApp(firebaseConfig);
 			const db = getFirestore(app);
+
+			$("#makeComment").click(async function () {
+				let title = $('#title').val();
+        let Password = $('#Password').val();
+        let comment = $('#comment').val();
+						let temp_html = `            
+            <div class="col">
+					<div class="card border-info mb-3" style="max-width: 18rem">
+						<div class="card-body">
+							<h5 class="card-title">${title}</h5>
+							<p class="card-text">${comment}</p>
+							<button type="button" class="btn btn-outline-warning">수정</button>
+							<button type="button" class="btn btn-outline-danger">삭제</button>
+						</div>
+					</div>
+				</div>`;
+            $('#card').append(temp_html);
+            });
 		</script>
 	</head>
 
@@ -66,14 +84,14 @@
 					<input id="comment" type="text" class="form-control" placeholder="comment" aria-label="Last name" />
 				</div>
 				<div class="col-auto">
-					<button onclick="makeCard" type="submit" class="btn btn-primary mb-3">저장</button>
-					<button type="submit" class="btn btn-primary mb-3">취소</button>
+					<button id="makeComment" type="button" class="btn btn-primary mb-3">저장</button>
+					<button type="button" class="btn btn-primary mb-3">취소</button>
 				</div>
 			</div>
 		</form>
 
 		<div class="commentBox">
-			<div id="cards" class="row row-cols-1 row-cols-md-4 g-4">
+			<div id="card" class="row row-cols-1 row-cols-md-4 g-4">
 				<div class="col">
 					<div class="card border-info mb-3" style="max-width: 18rem">
 						<div class="card-body">
