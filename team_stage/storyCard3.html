@@ -37,7 +37,6 @@
 			const app = initializeApp(firebaseConfig);
 			const db = getFirestore(app);
 
-<<<<<<< HEAD
 		
     $(document).on('click', '#card .delete-btn', function () {
         const enteredPassword = prompt("Enter the password to delete the comment:");
@@ -69,27 +68,6 @@
     });
 </script>
 </head>
-=======
-			$('#makeComment').click(async function () {
-				let title = $('#title').val();
-				let Password = $('#Password').val();
-				let comment = $('#comment').val();
-				let temp_html = `            
-            <div class="col">
-					<div class="card border-info mb-3" style="max-width: 18rem">
-						<div class="card-body">
-							<h5 class="card-title">${title}</h5>
-							<p class="card-text">${comment}</p>
-							<button type="button" class="btn btn-outline-warning">수정</button>
-							<button type="button" class="btn btn-outline-danger">삭제</button>
-						</div>
-					</div>
-				</div>`;
-				$('#card').append(temp_html);
-			});
-		</script>
-	</head>
->>>>>>> a660aac2ebc50c9a0e4576207a7e621ee9d63719
 
 	<body>
 		<a href="index.html">❌</a>
@@ -127,8 +105,7 @@
 		<div class="commentBox">
 			<div id="card" class="row row-cols-1 row-cols-md-4 g-4">
 				<div class="col">
-					<div class="card border-info mb-3">
-						<!-- 스타일 맥스 넓이값 지움 style="max-width: 18rem"-->
+					<div class="card border-info mb-3" style="max-width: 18rem">
 						<div class="card-body">
 							<h5 class="card-title">닉네임</h5>
 							<p class="card-text">comment</p>
