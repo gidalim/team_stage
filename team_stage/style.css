@@ -3,6 +3,17 @@
 	padding: 0;
 }
 
+@font-face {
+    font-family: 'Cafe24Supermagic-Bold-v1.0';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/Cafe24Supermagic-Bold-v1.0.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+* {
+	font-family: 'Cafe24Supermagic-Bold-v1.0';
+}
+
 body {
 	width: 1300px;
 }
@@ -69,6 +80,7 @@ details div {
 .card-img-top {
 	height: 45vh;
 }
+<<<<<<< HEAD
 
 /* 서브페이지 CSS */
 a {
@@ -117,3 +129,5 @@ a {
 	margin-left: 20px;
 }
 
+=======
+>>>>>>> d755be7a24dd1567454e1a4da6ada5c6875eabfc
