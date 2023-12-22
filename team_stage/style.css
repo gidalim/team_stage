@@ -21,6 +21,8 @@ body {
 	height: 100vh;
 	box-shadow: 0 0 30px 0 black;
 	border-radius: 10px;
+	padding-bottom: 950px;
+    margin-bottom: 20px;
 }
 
 .wrap-top {
@@ -32,12 +34,11 @@ body {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	margin-top: 100px;
+	margin-top: 10px;
 	margin-bottom: 50px;
 	font-weight: 800;
 	font-size: 50px;
 	color: #fff;
-	padding-bottom: 20px;
 	text-shadow: 3px 4px 5px black;
 }
 
@@ -66,14 +67,9 @@ body {
 }
 
 .images {
-	margin: 50px auto 0px auto;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-}
-
-#story {
-	padding-top: 100px;
 }
 
 #story img {
