@@ -103,7 +103,31 @@ p {
 
 .commentBox #card {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	align-items: center;
 	justify-content: center;
+}
+
+.commentBox #card .col {
+	width: 600px;
+}
+
+.commentBox #card .col .card-body {
+	display: flex;
+	flex-direction: row;
+}
+
+.commentBox #card .col .card-body .card-title,
+.commentBox #card .col .card-body .card-text {
+	margin-left: 10px;
+}
+
+.commentBox #card .col .card-body .card-text {
+	display: flex;
+	margin-right: 270px;
+}
+
+.commentBox #card .col .card-body button {
+	display: flex;
+	margin: 5px;
 }

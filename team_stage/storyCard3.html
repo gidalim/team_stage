@@ -37,11 +37,11 @@
 			const app = initializeApp(firebaseConfig);
 			const db = getFirestore(app);
 
-			$("#makeComment").click(async function () {
+			$('#makeComment').click(async function () {
 				let title = $('#title').val();
-        let Password = $('#Password').val();
-        let comment = $('#comment').val();
-						let temp_html = `            
+				let Password = $('#Password').val();
+				let comment = $('#comment').val();
+				let temp_html = `            
             <div class="col">
 					<div class="card border-info mb-3" style="max-width: 18rem">
 						<div class="card-body">
@@ -52,8 +52,8 @@
 						</div>
 					</div>
 				</div>`;
-            $('#card').append(temp_html);
-            });
+				$('#card').append(temp_html);
+			});
 		</script>
 	</head>
 
@@ -93,7 +93,8 @@
 		<div class="commentBox">
 			<div id="card" class="row row-cols-1 row-cols-md-4 g-4">
 				<div class="col">
-					<div class="card border-info mb-3" style="max-width: 18rem">
+					<div class="card border-info mb-3">
+						<!-- 스타일 맥스 넓이값 지움 style="max-width: 18rem"-->
 						<div class="card-body">
 							<h5 class="card-title">닉네임</h5>
 							<p class="card-text">comment</p>
