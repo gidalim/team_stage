@@ -43,6 +43,7 @@ a {
 	object-fit: cover;
 	width: 400px;
 	height: 550px;
+	margin-top: 50px;
 }
 
 .cardStory {
@@ -68,7 +69,6 @@ p {
 
 .cardStory a:link:hover {
 	color: lightgray;
-
 }
 
 .cardStory a:visited {
@@ -82,6 +82,10 @@ p {
 	align-items: center;
 	margin: 30px auto 30px auto;
 	padding: 100px;
+}
+
+.comment .row {
+	margin: 10px;
 }
 
 .comment .row .col-auto button {
