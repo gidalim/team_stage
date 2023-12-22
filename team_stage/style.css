@@ -20,14 +20,18 @@
 
 body {
 	width: 100%;
+	background: linear-gradient(40deg, rgb(229, 197, 233), rgb(18, 65, 68), #15194e);
 }
 
 .container {
 	display: flex;
+	background-color: #f0f0f0;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	font-family: 'Ubuntu', sans-serif;
+	height: 100vh;
+	box-shadow: 0 0 10px 0 black;
 }
 
 #team-title {
