@@ -101,13 +101,9 @@ p {
 	padding-left: 20px;
 }
 
-.commentBox #cards {
+.commentBox #card {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-}
-
-.CommentInput {
-	margin-left: 20px;
 }
