@@ -1,7 +1,6 @@
 * {
 	margin: 0;
 	padding: 0;
-	font-family: 'Cafe24Supermagic-Bold-v1.0';
 }
 
 @font-face {
@@ -13,22 +12,14 @@
 
 * {
 	font-family: 'Cafe24Supermagic-Bold-v1.0';
-	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/Cafe24Supermagic-Bold-v1.0.woff2') format('woff2');
-	font-weight: 700;
-	font-style: normal;
 }
 
 body {
 	width: 100%;
 	background: linear-gradient(40deg, rgb(229, 197, 233), rgb(25, 71, 75), #15194e);
 }
-
 .container {
-	display: flex;
-	background-color: #f0f0f0;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+	margin-left: 20px;
 	font-family: 'Ubuntu', sans-serif;
 	height: 100vh;
 	box-shadow: 0 0 10px 0 black;
@@ -53,31 +44,10 @@ body {
 
 .main1 {
 	margin-top: 20px;
-	margin-left: 180px;
 	display: flex;
+	flex-direction: row;
 	align-items: center;
 	justify-content: space-evenly;
-	padding: 10px;
-	height: 500px;
-	width: 1200px;
-}
-
-.main1-left {
-	margin-bottom: 90px;
-	height: 350px;
-	margin-right: 50px;
-	display: flex;
-}
-
-.main1-right {
-	display: block;
-	width: 500px;
-	margin-left: 80px;
-	height: 450px;
-}
-
-.main1 summary:hover {
-	color: slateblue;
 }
 
 .images {
@@ -121,7 +91,6 @@ details {
 details summary {
 	list-style: none;
 	cursor: pointer;
-	font-size: 25px;
 }
 
 details summary::before {
@@ -134,82 +103,9 @@ details div {
 	padding: 10px;
 	background-color: #f0f0f0;
 	border: 1px solid #ccc;
+	margin-top: 5px;
 }
 
 .card-img-top {
 	height: 45vh;
 }
-
-/* 서브페이지 CSS */
-a {
-	text-decoration-line: none;
-}
-
-.cardMain {
-	display: flex;
-	justify-content: space-around;
-	width: 100%;
-	height: 50vh;
-}
-
-.cardImages {
-	border-radius: 20%;
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-}
-
-.cardStory {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
-
-/* 서브페이지 CSS */
-/*
-a {
-	text-decoration-line: none;
-}
-
-.cardMain {
-	display: flex;
-	justify-content: space-around;
-	width: 100%;
-	height: 50vh;
-}
-
-.cardImages {
-	border-radius: 20%;
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-}
-
-.cardStory {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
-
-.comment {
-	width: 1200px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin-top: 50px;
-}
-.commentBox {
-	margin: 20px auto 20px auto;
-	padding-left: 10%;
-
-	display: flex;
-	flex-direction: row;
-
-	border: 1px solid black;
-}
-
-.CommentInput {
-	margin-left: 20px;
-} */
