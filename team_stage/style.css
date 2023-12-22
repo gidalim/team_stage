@@ -105,9 +105,9 @@ details div {
 }
 
 .commentBox {
-background-color: green;
-
-  width: 600px;
-  height: 300px;
-  margin: 20px auto 20px auto;
-}
+  background-color: green;
+  
+    width: 600px;
+    height: 300px;
+    margin: 20px auto 20px auto;
+  }
