@@ -25,6 +25,7 @@ a {
 }
 
 .cardMain {
+	margin-top: 30px;
 	display: flex;
 	justify-content: space-evenly;
 	width: 100%;
@@ -91,6 +92,11 @@ p {
 	margin: 3px;
 	width: 65px;
 }
+
+.comment .row .col-auto button {
+	margin: auto 5px auto 5px;
+}
+
 .commentBox {
 	padding-left: 20px;
 }
