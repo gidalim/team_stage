@@ -1,30 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>소개하기</title>
-  <style>
-    .image {
-      display: flex;
-      justify-content: center;
-      width: 100%;
-      height: 50vh;      
-    }
-    .images {
-      border-radius: 20%;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .story {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-  </style>
-  
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <!-- //bootstrap -->
+
+  <link rel="stylesheet" href="style.css">
+  <!-- //css -->
+
   <script type="module">
     // Firebase SDK 라이브러리 가져오기
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
@@ -52,17 +40,44 @@
 
   </script>
 </head>
+
 <body>
-  <div class="image">
+  <div class="cardMain">
     <a href="index.html">
-      <img class="images" src="사진.jpg" alt="이미지를 누르면 연결됩니다.">
+      <img class="cardImages" src="정해준사진.jpg" alt="이미지를 누르면 연결됩니다.">
     </a>
+    <div class="cardStory">
+      <h1>이름</h1>
+      <p>자신의 소개문</p>
+      <p>블로그</p>
+      <p>Github</p>
+    </div>
   </div>
-  <div class="story">
-    <h1>이름</h1>
-    <p>자신의 소개문</p>
-    <p>블로그</p>
-    <p>Github</p>
-  </div>
+
+  <form class="comment">
+    <div class="row">
+      <div class="col">
+        <input type="text" class="form-control" placeholder="닉네임" aria-label="First name">
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" placeholder="comment" aria-label="Last name">
+      </div>
+      <div class="col-auto">
+        <label for="inputPassword2" class="visually-hidden">Password</label>
+        <input type="password" class="form-control" id="inputPassword2" placeholder="Password">
+      </div>
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-3">저장</button>
+        <button type="submit" class="btn btn-primary mb-3">취소</button>
+      </div>
+    </div>
+  </form>
+
+  <div class="commentBox">
+    <label for="staticEmail" class="col-sm-2 col-form-label">닉네임</label>
+    <div class="col-sm-10">
+      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="comment">
+    </div>
 </body>
+
 </html>
