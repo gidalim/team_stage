@@ -49,25 +49,28 @@ a {
 	justify-content: center;
 	align-items: center;
 	color: #fff;
+	text-shadow: 3px 4px 5px #111;
 }
 
 p {
 	font-size: 20px;
 }
 /*블로그, 깃허브 링크 걸기 추가 및 색상 변경*/
-a {
+.cardStory a {
 	font-size: 20px;
 }
 
-a:link {
-	color:ivory;
+.cardStory a:link {
+	color: #fff;
 }
 
-a:visited {
-	color: beige;
+.cardStory a:link:hover {
+	color: lightgray;
+
 }
-a:active { 
-	color:darkorchid; 
+
+.cardStory a:visited {
+	color: antiquewhite;
 }
 
 .comment {
