@@ -20,6 +20,12 @@ body {
 	background: linear-gradient(40deg, rgb(229, 197, 233), rgb(25, 71, 75), #15194e);
 }
 
+#back {
+	font-size: 20px;
+	color: #fff;
+	margin-left: 10px;
+}
+
 a {
 	text-decoration-line: none;
 }
@@ -30,12 +36,6 @@ a {
 	justify-content: space-evenly;
 	width: 100%;
 	height: 50vh;
-}
-
-.cardMain a {
-	margin: 10px;
-	font-size: 22px;
-	color: #fffffe;
 }
 
 .cardMain #photo {
