@@ -59,6 +59,10 @@ body {
 	height: 446px;
 }
 
+.main1-right summary:hover {
+	color: #999;
+}
+
 .images {
 	margin: 50px auto 0px auto;
 	display: flex;
