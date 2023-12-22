@@ -39,15 +39,38 @@
 
 			// 삭제기능 비밀번호가 계속 틀리다는 오류 //
 			$(document).on('click', '#card .delete-btn', function () {
-				const enteredPassword = prompt('삭제하시려면 비밀번호를 입력해주세요:');
-				const storedPassword = 'your_actual_stored_password';
-				if (enteredPassword === storedPassword || enteredPassword === null) {
-					$(this).closest('.col').remove();
+				if ($(this).closest('.card-body').find('.password-input').length === 0) {
+					const passwordInput = $('<input>', {
+						type: 'password',
+						class: 'form-control password-input',
+						placeholder: 'Password',
+						style: 'margin-top: 10px; width: 200px; height: 30px;',
+					});
+
+					const deleteBtn = $(this);
+					const cardBody = deleteBtn.closest('.card-body');
+
+					cardBody.append(passwordInput);
+
+					passwordInput.on('blur', function () {});
+
+					passwordInput.on('keydown', function (e) {
+						if (e.key === 'Enter') {
+							const enteredPassword = $(this).val();
+							const storedPassword = 'your_actual_stored_password';
+
+							if (enteredPassword === storedPassword) {
+								n;
+								deleteBtn.closest('.col').remove();
+							} else {
+								alert('비밀번호가 틀립니다.');
+							}
+						}
+					});
+					passwordInput.focus();
 				} else {
-					alert('비밀번호가 틀립니다.');
 				}
 			});
-
 			$('#makeComment').click(async function () {
 				let title = $('#title').val();
 				let Password = $('#Password').val();
