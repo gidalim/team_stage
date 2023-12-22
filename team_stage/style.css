@@ -22,20 +22,20 @@ body {
 	box-shadow: 0 0 30px 0 black;
 	border-radius: 10px;
 	padding-bottom: 950px;
-    margin-bottom: 20px;
+	margin-bottom: 20px;
 }
 
 .wrap-top {
-	padding-top: 30px;
+	padding-top: 50px;
 }
 
-#team-title {
+.wrap-top #team-title {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	margin-top: 10px;
-	margin-bottom: 50px;
+	margin-bottom: 60px;
 	font-weight: 800;
 	font-size: 50px;
 	color: #fff;
@@ -49,6 +49,7 @@ body {
 
 .main1 {
 	margin-top: 20px;
+	margin-bottom: 20px;
 	display: flex;
 	flex-direction: row;
 	align-items: center;

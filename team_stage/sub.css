@@ -25,6 +25,7 @@ a {
 }
 
 .cardMain {
+	margin-top: 30px;
 	display: flex;
 	justify-content: space-evenly;
 	width: 100%;
@@ -43,7 +44,7 @@ a {
 	object-fit: cover;
 	width: 400px;
 	height: 550px;
-	margin-top: 50px;
+	margin-top: 30px;
 }
 
 .cardStory {
@@ -76,26 +77,57 @@ p {
 }
 
 .comment {
-	width: 1200px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin: 300px auto 30px auto;
+	margin: 30px auto 30px auto;
 	padding: 100px;
 }
 
-.comment .row {
-	margin: 10px;
+.comment .row #comment {
+	width: 300px;
 }
 
-.comment .row .col-auto button {
+.comment .row .comment .row .col-auto button {
 	margin: 3px;
 	width: 65px;
 }
+
+.comment .row .col-auto button {
+	margin: auto 5px auto 5px;
+}
+
 .commentBox {
 	padding-left: 20px;
 }
 
-.CommentInput {
-	margin-left: 20px;
+.commentBox #card {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+
+.commentBox #card .col {
+	width: 600px;
+}
+
+.commentBox #card .col .card-body {
+	display: flex;
+	flex-direction: row;
+}
+
+.commentBox #card .col .card-body .card-title,
+.commentBox #card .col .card-body .card-text {
+	margin-left: 10px;
+}
+
+.commentBox #card .col .card-body .card-text {
+	display: flex;
+	margin-right: 270px;
+}
+
+.commentBox #card .col .card-body button {
+	display: flex;
+	margin: 5px;
 }
