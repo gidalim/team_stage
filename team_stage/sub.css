@@ -30,6 +30,22 @@ a {
 	text-decoration-line: none;
 }
 
+#top-btn { 
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    z-index: 999;
+	background-image: url(topicon.png);
+	background-position:center;
+	background-repeat:no-repeat;	
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    width: 68px;
+    height: 68px;
+}
+
 .cardMain {
 	margin-top: 30px;
 	display: flex;
