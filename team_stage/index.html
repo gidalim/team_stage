@@ -43,44 +43,52 @@
     // Firebase 인스턴스 초기화
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
-    function storyProfileCard(id, image, name, MBTI) {
+
+    function storyProfileCard(cardId, url, image, name, MBTI) {
+
       return `
-            <div class="col" id="${id}">
-                <div class="card">
-                  <a href="${id}.html">
-                    <img src="${image}" class="card-img-top" alt="이미지를 누르면 연결됩니다.">
-                  </a>
-                  <div class="card-body">
-                    <h5 class="card-title">${name}</h5>
-                    <p class="card-text">${MBTI}</p>
-                  </div>
-                </div>
-              </div> `;
+    <div class="col" id="${cardId}">
+        <div class="card">
+          <a href="${url}">
+            <img src="${image}" class="card-img-top" alt="이미지를 누르면 연결됩니다.">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title">${name}</h5>
+            <p class="card-text">${MBTI}</p>
+          </div>
+        </div>
+      </div> `;
+
+
+
     }
 
 
-    async function story() {
+    async function stories() {
       let docs = await getDocs(collection(db, "Profile"));
       let count = 0;
 
       docs.forEach((doc, index) => {
+
         if (count < 5) {
           let row = doc.data();
 
           let image = row['image'];
           let name = row['name'];
           let MBTI = row['MBTI'];
+          let url = row ['url']
 
-          let temp_html = storyProfileCard(`storyCard${index + 1}`, image, name, MBTI);
+          const temp_html = storyProfileCard(index, url, image, name, MBTI);
 
           $('#card').append(temp_html);
 
           count++;
+
         }
       });
     }
     $(document).ready(function () {
-      story();
+      stories();
     });
 
   </script>
@@ -96,7 +104,7 @@
         <div class="main1-left">
           <img src="2조.png" alt="사진첨부">
         </div>
-        <span class="main1-right">
+        <span class="main1-righzt">
           <h2 style="color:rgb(194, 186, 227)">Our_stage 2조</h2>
           <br>
           <details>
@@ -134,8 +142,8 @@
               <p class="card-text" id="MBTI">ENTJ</p>
             </div>
           </div>
-        </div>
-        <div class="col" id="storyCard2">
+        </div> -->
+        <!-- <div class="col" id="storyCard2">
           <div class="card">
             <a href="storyCard2.html">
               <img src="김연재사진.jpg" class="card-img-top" alt="이미지를 누르면 연결됩니다.">
