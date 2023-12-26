@@ -54,17 +54,20 @@
                         <p class="card-text">${comment}</p>
                         <button type="button" class="btn btn-outline-warning">수정</button>
                         <button type="button" class="btn btn-outline-danger delete-btn">
-													<span id="password" value=">${Password}"></span>
 													삭제</button>
+													<span value=${Password}></span>
                     </div>
                 </div>
             </div>`;
 				$('#card').append(temp_html);
+				console.log(`${title}, ${comment}, ${Password}`)
 
 				// await addDoc(collection(db, "Profile"), doc);
         //     alert('저장 완료!');
         //     window.location.reload();
 		});
+
+		let checkpw = document.getElementsByTagName("span").value;
 
 				// 삭제기능 //
 				$(document).on('click', '#card .delete-btn', function () {
@@ -81,14 +84,14 @@
 
 					cardBody.append(passwordInput);
 
-					const checkpw = this.getElementById("password").value;
+					
 
 					passwordInput.on('blur', function () {});
 
 				passwordInput.on('keydown', function (e) {
 					if (e.key === 'Enter') {
 						const enteredPassword = $(this).val();
-						const storedPassword = checkpw;
+						let storedPassword = checkpw;
 
 						if (enteredPassword === storedPassword) {
 							deleteBtn.closest('.col').remove();
