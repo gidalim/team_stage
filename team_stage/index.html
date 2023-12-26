@@ -10,7 +10,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
-    rel="stylesheet">
   <!-- //font -->
   <link rel="stylesheet" href="style.css">
   <!-- //css -->
@@ -43,21 +42,24 @@
     // Firebase 인스턴스 초기화
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
+
+  
+
     function storyProfileCard(id, image, name, MBTI) {
       return `
-            <div class="col" id="${id}">
-                <div class="card">
-                  <a href="${id}.html">
-                    <img src="${image}" class="card-img-top" alt="이미지를 누르면 연결됩니다.">
-                  </a>
-                  <div class="card-body">
-                    <h5 class="card-title">${name}</h5>
-                    <p class="card-text">${MBTI}</p>
-                  </div>
-                </div>
-              </div> `;
+        <div class="col" id="${id}">
+          <div class="card">
+            <a href="${id}.html">
+              <img src="${image}" class="card-img-top" alt="이미지를 누르면 연결됩니다.">
+            </a>
+            <div class="card-body">
+              <h5 class="card-title">${name}</h5>
+              <p class="card-text">${MBTI}</p>
+            </div>
+          </div>
+        </div>`;
+        
     }
-
 
     async function story() {
       let docs = await getDocs(collection(db, "Profile"));
@@ -72,13 +74,15 @@
           let MBTI = row['MBTI'];
 
           let temp_html = storyProfileCard(`storyCard${index + 1}`, image, name, MBTI);
-
+          
           $('#card').append(temp_html);
 
           count++;
         }
       });
     }
+
+
     $(document).ready(function () {
       story();
     });
@@ -121,6 +125,8 @@
         </span>
       </div>
     </div>
+
+  
 
     <div id="story" class="images">
       <div id="card" class="row row-cols-1 row-cols-md-5 g-4">
