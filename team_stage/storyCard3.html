@@ -41,39 +41,6 @@
 		// const data = firestore.collection("profile")
 		// console.log(data)
 
-		// 삭제기능 //
-		$(document).on('click', '#card .delete-btn', function () {
-			if ($(this).closest('.card-body').find('.password-input').length === 0) {
-				const passwordInput = $('<input>', {
-					type: 'password',
-					class: 'form-control password-input',
-					placeholder: 'Password',
-					style: 'margin-top: 10px; width: 200px; height: 30px;',
-				});
-
-				const deleteBtn = $(this);
-				const cardBody = deleteBtn.closest('.card-body');
-
-				cardBody.append(passwordInput);
-
-				passwordInput.on('blur', function () { });
-
-				passwordInput.on('keydown', function (e) {
-					if (e.key === 'Enter') {
-						const enteredPassword = $(this).val();
-						const storedPassword = 'your_actual_stored_password';
-
-						if (enteredPassword === storedPassword) {
-							deleteBtn.closest('.col').remove();
-						} else {
-							alert('비밀번호가 틀립니다.');
-						}
-					}
-				});
-				passwordInput.focus();
-			} else {
-			}
-		});
 		$('#makeComment').click(async function () {
 			let title = $('#title').val();
 			let Password = $('#Password').val();
@@ -92,9 +59,45 @@
             </div>`;
 				$('#card').append(temp_html);
 
-				await addDoc(collection(db, "comment"), doc);
-			alert('저장 완료!');
-			window.location.reload();
+			// 	await addDoc(collection(db, "comment"), doc);
+			// alert('저장 완료!');
+			// window.location.reload();
+		});
+
+		// 삭제기능 //
+		$(document).on('click', '#card .delete-btn', function () {
+			if ($(this).closest('.card-body').find('.password-input').length === 0) {
+				const passwordInput = $('<input>', {
+					type: 'password',
+					class: 'form-control password-input',
+					placeholder: 'Password',
+					style: 'margin-top: 10px; width: 200px; height: 30px;',
+				});
+
+				const deleteBtn = $(this);
+				const cardBody = deleteBtn.closest('.card-body');
+
+				cardBody.append(passwordInput);
+
+				let checkpw = this.Password;
+
+				passwordInput.on('blur', function () { });
+
+				passwordInput.on('keydown', function (e) {
+					if (e.key === 'Enter') {
+						const enteredPassword = $(this).val();
+						const storedPassword = checkpw;
+
+						if (enteredPassword === storedPassword) {
+							deleteBtn.closest('.col').remove();
+						} else {
+							alert('비밀번호가 틀립니다.');
+						}
+					}
+				});
+				passwordInput.focus();
+			} else {
+			}
 		});
 
 			// Top 버튼 클릭시 페이지 상단으로 이동
