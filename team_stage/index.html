@@ -44,43 +44,40 @@
     const db = getFirestore(app);
 
   
-
     function storyProfileCard(id, image, name, MBTI) {
-      return `
-        <div class="col" id="${id}">
-          <div class="card">
-            <a href="${id}.html">
-              <img src="${image}" class="card-img-top" alt="이미지를 누르면 연결됩니다.">
-            </a>
-            <div class="card-body">
-              <h5 class="card-title">${name}</h5>
-              <p class="card-text">${MBTI}</p>
-            </div>
-          </div>
-        </div>`;
-        
+  return `
+    <div class="col" id="${id}">
+      <div class="card">
+        <a href="${id}.html">
+          <img src="${image}" class="card-img-top" alt="이미지를 누르면 연결됩니다.">
+        </a>
+        <div class="card-body">
+          <h5 class="card-title">${name}</h5>
+          <p class="card-text">${MBTI}</p>
+        </div>
+      </div>
+    </div>`;
+}
+
+async function story() {
+  let docs = await getDocs(collection(db, "Profile"));
+  let count = 0;
+
+  docs.forEach((doc, index) => {
+    if (count < 5) {
+      let row = doc.data();
+      let image = row['image'];
+      let name = row['name'];
+      let MBTI = row['MBTI'];
+
+      let temp_html = storyProfileCard(`storyCard${index + 1}`, image, name, MBTI);
+
+      $('#card').append(temp_html);
+
+      count++;
     }
-
-    async function story() {
-      let docs = await getDocs(collection(db, "Profile"));
-      let count = 0;
-
-      docs.forEach((doc, index) => {
-        if (count < 5) {
-          let row = doc.data();
-
-          let image = row['image'];
-          let name = row['name'];
-          let MBTI = row['MBTI'];
-
-          let temp_html = storyProfileCard(`storyCard${index + 1}`, image, name, MBTI);
-          
-          $('#card').append(temp_html);
-
-          count++;
-        }
-      });
-    }
+  });
+}
 
 
     $(document).ready(function () {
