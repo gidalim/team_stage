@@ -43,36 +43,49 @@
     // Firebase 인스턴스 초기화
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
-    const storage = getStorage(app);
-    const storageRef = ref(storage);
+    function storyProfileCard(id, image, name, MBTI) {
+      return `
+            <div class="col" id="${id}">
+                <div class="card">
+                  <a href="${id}.html">
+                    <img src="${image}" class="card-img-top" alt="이미지를 누르면 연결됩니다.">
+                  </a>
+                  <div class="card-body">
+                    <h5 class="card-title">${name}</h5>
+                    <p class="card-text">${MBTI}</p>
+                  </div>
+                </div>
+              </div> `;
+    }
 
-    let docs = await getDocs(collection(db, "Profile"));
-      docs.forEach((doc) => {
-        let row = doc.data();
-        
-        let image = row['image'];
-        let name = row['name'];
-        let MBTI = row['MBTI'];
 
-        let temp_html = `
-        <div class="col" id="storyCard1">
-            <div class="card">
-              <a href="storyCard1.html">
-                <img src="${image}" class="card-img-top" alt="이미지를 누르면 연결됩니다.">
-              </a>
-              <div class="card-body">
-                <h5 class="card-title">${name}</h5>
-                <p class="card-text">${MBTI}</p>
-              </div>
-            </div>
-          </div> `;
-        $('#card').append(temp_html);
-      
+    async function story() {
+      let docs = await getDocs(collection(db, "Profile"));
+      let count = 0;
+
+      docs.forEach((doc, index) => {
+        if (count < 5) {
+          let row = doc.data();
+
+          let image = row['image'];
+          let name = row['name'];
+          let MBTI = row['MBTI'];
+
+          let temp_html = storyProfileCard(`storyCard${index + 1}`, image, name, MBTI);
+
+          $('#card').append(temp_html);
+
+          count++;
+        }
       });
+    }
+    $(document).ready(function () {
+      story();
+    });
 
-    </script>
+  </script>
 </head>
-​  
+​
 
 <body>
   <div class="container">
@@ -110,15 +123,15 @@
     </div>
 
     <div id="story" class="images">
-      <div class="row row-cols-1 row-cols-md-5 g-4">
-        <div class="col" id="storyCard1">
+      <div id="card" class="row row-cols-1 row-cols-md-5 g-4">
+        <!-- <div class="col" id="storyCard1">
           <div class="card">
             <a href="storyCard1.html">
               <img src="박강토사진.PNG" class="card-img-top" id="image" alt="이미지를 누르면 연결됩니다.">
             </a>
             <div class="card-body">
               <h5 class="card-title" id="name">박강토</h5>
-              <p class="card-text" id="MBTI" >ENTJ</p>
+              <p class="card-text" id="MBTI">ENTJ</p>
             </div>
           </div>
         </div>
@@ -165,7 +178,7 @@
               <p class="card-text">INFJ</p>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
