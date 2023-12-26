@@ -24,6 +24,7 @@
     // Firebase SDK 라이브러리 가져오기
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
     import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js';
+    import { getStorage } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-storage.js';
     import { collection, addDoc } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js';
     import { getDocs } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js';
 
@@ -42,10 +43,36 @@
     // Firebase 인스턴스 초기화
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
+    const storage = getStorage(app);
+    const storageRef = ref(storage);
 
-  </script>
+    let docs = await getDocs(collection(db, "Profile"));
+      docs.forEach((doc) => {
+        let row = doc.data();
+        
+        let image = row['image'];
+        let name = row['name'];
+        let MBTI = row['MBTI'];
+
+        let temp_html = `
+        <div class="col" id="storyCard1">
+            <div class="card">
+              <a href="storyCard1.html">
+                <img src="${image}" class="card-img-top" alt="이미지를 누르면 연결됩니다.">
+              </a>
+              <div class="card-body">
+                <h5 class="card-title">${name}</h5>
+                <p class="card-text">${MBTI}</p>
+              </div>
+            </div>
+          </div> `;
+        $('#card').append(temp_html);
+      
+      });
+
+    </script>
 </head>
-​
+​  
 
 <body>
   <div class="container">
@@ -56,29 +83,29 @@
         <div class="main1-left">
           <img src="2조.png" alt="사진첨부">
         </div>
-          <span class="main1-right">
-            <h2 style="color:rgb(194, 186, 227)">Our_stage 2조</h2>
-            <br>
-            <details>
-              <summary>조원 이름</summary>
-              <p>박강토, 김연재, 정해준, 정보연, 김형민</p>
-            </details>
-            <br>
-            <details>
-              <summary>우리 팀만의 목표</summary>
-              <p>힘을 합쳐 완성하기!</p>
-            </details>
-            <br>
-            <details>
-              <summary>이미지 링크</summary>
-              <p>링크</p>
-            </details>
-            <br>
-            <details>
-              <summary>우리팀 약속!</summary>
-              <p>캠켜기, 마이크를 이용 할 떈 부담없이 사용하기</p>
-            </details>
-          </span>
+        <span class="main1-right">
+          <h2 style="color:rgb(194, 186, 227)">Our_stage 2조</h2>
+          <br>
+          <details>
+            <summary>조원 이름</summary>
+            <p>박강토, 김연재, 정해준, 정보연, 김형민</p>
+          </details>
+          <br>
+          <details>
+            <summary>우리 팀만의 목표</summary>
+            <p>힘을 합쳐 완성하기!</p>
+          </details>
+          <br>
+          <details>
+            <summary>이미지 링크</summary>
+            <p>링크</p>
+          </details>
+          <br>
+          <details>
+            <summary>우리팀 약속!</summary>
+            <p>캠켜기, 마이크를 이용 할 떈 부담없이 사용하기</p>
+          </details>
+        </span>
       </div>
     </div>
 
@@ -87,11 +114,11 @@
         <div class="col" id="storyCard1">
           <div class="card">
             <a href="storyCard1.html">
-              <img src="박강토사진.PNG" class="card-img-top" alt="이미지를 누르면 연결됩니다.">
+              <img src="박강토사진.PNG" class="card-img-top" id="image" alt="이미지를 누르면 연결됩니다.">
             </a>
             <div class="card-body">
-              <h5 class="card-title">박강토</h5>
-              <p class="card-text">ENTJ</p>
+              <h5 class="card-title" id="name">박강토</h5>
+              <p class="card-text" id="MBTI" >ENTJ</p>
             </div>
           </div>
         </div>

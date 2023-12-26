@@ -36,16 +36,23 @@
 			// Firebase 인스턴스 초기화
 			const app = initializeApp(firebaseConfig);
 			const db = getFirestore(app);
+			// const data = firestore.collection("profile")
+			// console.log(data)
 
 			$('#makeComment').click(async function () {
-				let title = $('#title').val();
+				let title = $('#name').val();
 				let Password = $('#Password').val();
 				let comment = $('#comment').val();
+				// let comments =  [{name: "kim", pw: "1234", content: "안녕하세요"}, {name: "park", pw: "2222", content: "반갑습니다"}]
+
+				//map / keyword: html for 문 
+
+
 				let temp_html = `
             <div class="col">
                 <div class="card border-info mb-3" style="max-width: 18rem">
                     <div class="card-body">
-                        <h5 class="card-title">${title}</h5>
+                        <h5 class="card-title">${name}</h5>
                         <p class="card-text">${comment}</p>
                         <button type="button" class="btn btn-outline-warning">수정</button>
                         <button type="button" class="btn btn-outline-danger delete-btn">삭제</button>
@@ -53,6 +60,10 @@
                 </div>
             </div>`;
 				$('#card').append(temp_html);
+
+				await addDoc(collection(db, "comment"), doc);
+            alert('저장 완료!');
+            window.location.reload();
 
 				// 삭제기능 //
 				$(document).on('click', '#card .delete-btn', function () {
@@ -108,7 +119,7 @@
 		<form class="comment-wrap">
 			<div class="row">
 				<div class="col">
-					<input id="title" type="text" class="form-control" placeholder="닉네임" aria-label="First name" />
+					<input id="name" type="text" class="form-control" placeholder="닉네임" aria-label="First name" />
 				</div>
 				<div class="col-auto">
 					<label for="inputPassword2" class="visually-hidden">Password</label>
