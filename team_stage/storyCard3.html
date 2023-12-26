@@ -45,8 +45,8 @@
 				let title = $('#name').val();
 				let Password = $('#Password').val();
 				let comment = $('#comment').val();
-
-
+		
+			
 				let temp_html = `
             <div class="col">
                 <div class="card border-info mb-3" style="max-width: 18rem">
@@ -63,7 +63,11 @@
 				await addDoc(collection(db, "comment"), doc);
             alert('저장 완료!');
             window.location.reload();
+<<<<<<< HEAD
 						
+=======
+		});
+>>>>>>> 6875794382809183f479705df67b938827685c51
 				// 삭제기능 //
 				$(document).on('click', '#card .delete-btn', function () {
 					if ($(this).closest('.card-body').find('.password-input').length === 0) {
