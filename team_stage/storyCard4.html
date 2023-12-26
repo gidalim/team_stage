@@ -36,6 +36,7 @@
 			// Firebase 인스턴스 초기화
 			const app = initializeApp(firebaseConfig);
 			const db = getFirestore(app);
+			
 			$('#makeComment').click(async function () {
 				let title = $('#title').val();
 				let Password = $('#Password').val();
@@ -55,10 +56,10 @@
 				$('#card').append(temp_html);
 			});
 
-				// Top 버튼 클릭시 페이지 상단으로 이동
-				$(document).ready(function() { 
-				$('#top-btn').click(function(){
-					$('html, body').animate({scrollTop : 0}, 200);
+			// Top 버튼 클릭시 페이지 상단으로 이동
+			$(document).ready(function () {
+				$('#top-btn').click(function () {
+					$('html, body').animate({ scrollTop: 0 }, 200);
 					return false;
 				});
 			});
@@ -70,7 +71,7 @@
 		<div class="cardMain">
 			<div>
 				<!-- 사진첨부 -->
-				<img id="photo" class="cardImages" src="..." alt="이미지를 누르면 연결됩니다." />
+				<img id="photo" class="cardImages" src="https://firebasestorage.googleapis.com/v0/b/our-stage.appspot.com/o/%EC%A0%95%EB%B3%B4%EC%97%B0%EC%82%AC%EC%A7%84.jpg?alt=media&token=43416015-4c65-4eef-8f0e-1083a16ac4e0" alt="이미지를 누르면 연결됩니다." />
 			</div>
 			<div class="cardStory">
 				<h1>정보연</h1>
@@ -80,7 +81,7 @@
 			</div>
 		</div>
 
-		<button id="top-btn"></button >
+		<button id="top-btn"></button>
 
 		<form class="comment-wrap">
 			<div class="row">
