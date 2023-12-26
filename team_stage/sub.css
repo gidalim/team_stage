@@ -30,6 +30,22 @@ a {
 	text-decoration-line: none;
 }
 
+#top-btn { 
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    z-index: 999;
+	background-image: url(topicon.png);
+	background-position:center;
+	background-repeat:no-repeat;	
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    width: 68px;
+    height: 68px;
+}
+
 .cardMain {
 	margin-top: 30px;
 	display: flex;
@@ -60,6 +76,7 @@ a {
 	align-items: center;
 	color: #fff;
 	text-shadow: 3px 4px 5px #111;
+	margin-top: 250px;
 }
 
 p {
@@ -86,7 +103,8 @@ p {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin: 50px auto 30px auto;
+	margin: 320px auto 50px auto;
+	
 }
 
 .comment-wrap .row #comment {
@@ -99,10 +117,16 @@ p {
 	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
 }
 
+.commentBox {
+	margin: 50px;
+	
+}
+
 .commentBox #card {
 	position: relative;
-	margin: 20px;
+	margin: 5	0px;
 	word-break: break-all;
+
 	border-radius: 8px;
 	display: flex;
 	flex-direction: column;
@@ -111,6 +135,7 @@ p {
 }
 .commentBox #card .col {
 	width: 1000px;
+
 }
 
 .commentBox #card .col .card-body {

@@ -54,6 +54,14 @@
             </div>`;
 				$('#card').append(temp_html);
 			});
+
+				// Top 버튼 클릭시 페이지 상단으로 이동
+				$(document).ready(function() { 
+				$('#top-btn').click(function(){
+					$('html, body').animate({scrollTop : 0}, 200);
+					return false;
+				});
+			});
 		</script>
 	</head>
 
@@ -71,6 +79,8 @@
 				<a href="https://github.com/developeryeon">GitHub</a>
 			</div>
 		</div>
+
+		<button id="top-btn"></button >
 
 		<form class="comment-wrap">
 			<div class="row">

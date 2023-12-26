@@ -54,6 +54,14 @@
             </div>`;
 				$('#card').append(temp_html);
 			});
+
+				// Top 버튼 클릭시 페이지 상단으로 이동
+				$(document).ready(function() { 
+				$('#top-btn').click(function(){
+					$('html, body').animate({scrollTop : 0}, 200);
+					return false;
+				});
+			});
 		</script>
 	</head>
 
@@ -90,6 +98,8 @@
 				</div>
 			</div>
 		</form>
+
+		<button id="top-btn"></button >
 
 		<div class="commentBox">
 			<div id="card" class="row row-cols-1 row-cols-md-4 g-4">
