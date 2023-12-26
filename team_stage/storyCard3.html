@@ -60,7 +60,7 @@
             </div>`;
 				$('#card').append(temp_html);
 
-				await addDoc(collection(db, "profile"), doc);
+				await addDoc(collection(db, "Profile"), doc);
             alert('저장 완료!');
             window.location.reload();
 		});
