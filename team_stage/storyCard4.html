@@ -36,6 +36,7 @@
 			// Firebase 인스턴스 초기화
 			const app = initializeApp(firebaseConfig);
 			const db = getFirestore(app);
+			
 			$('#makeComment').click(async function () {
 				let title = $('#title').val();
 				let Password = $('#Password').val();
@@ -70,7 +71,7 @@
 		<div class="cardMain">
 			<div>
 				<!-- 사진첨부 -->
-				<img id="photo" class="cardImages" src="..." alt="이미지를 누르면 연결됩니다." />
+				<img id="photo" class="cardImages" src="정보연사진.jpg" alt="이미지를 누르면 연결됩니다." />
 			</div>
 			<div class="cardStory">
 				<h1>정보연</h1>
