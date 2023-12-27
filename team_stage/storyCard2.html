@@ -1,180 +1,234 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>소개하기</title>
 
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<!-- //jQuery -->
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>소개하기</title>
 
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
-		<!-- //bootstrap -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<!-- //jQuery -->
 
-		<link rel="stylesheet" href="sub.css" />
-		<!-- //css -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+	<!-- //bootstrap -->
 
-		<script type="module">
-			// Firebase SDK 라이브러리 가져오기
-			import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
-			import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js';
-			import { collection, addDoc } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js';
-			import { getDocs } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js';
+	<link rel="stylesheet" href="sub.css" />
+	<!-- //css -->
 
-			// Firebase 구성 정보 설정
-			const firebaseConfig = {
-				// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-				apiKey: 'AIzaSyDcQ6Q78akg6Oo9Z2VO5APf-QQ7S7kn9DQ',
-				authDomain: 'our-stage.firebaseapp.com',
-				projectId: 'our-stage',
-				storageBucket: 'our-stage.appspot.com',
-				messagingSenderId: '999213003989',
-				appId: '1:999213003989:web:774432a35de3c233c69e5c',
-				measurementId: 'G-G2QMB19RVB',
-			};
+	<script type="module">
+		// Firebase SDK 라이브러리 가져오기
+		import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
+		import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js';
+		import { collection, addDoc } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js';
+		import { getDocs } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js';
+
+		// Firebase 구성 정보 설정
+		const firebaseConfig = {
+			// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+			apiKey: 'AIzaSyDcQ6Q78akg6Oo9Z2VO5APf-QQ7S7kn9DQ',
+			authDomain: 'our-stage.firebaseapp.com',
+			projectId: 'our-stage',
+			storageBucket: 'our-stage.appspot.com',
+			messagingSenderId: '999213003989',
+			appId: '1:999213003989:web:774432a35de3c233c69e5c',
+			measurementId: 'G-G2QMB19RVB',
+		};
 
 		// Firebase 인스턴스 초기화
 		const app = initializeApp(firebaseConfig);
 		const db = getFirestore(app);
 
-		import { doc, setDoc, Timestamp, updateDoc, arrayUnion, getDoc } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js';
-		import { arrayRemove } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js';
-
-
-
-		window.onload = async function () {
-    const collectionRef = collection(db, '팀원1');
-    const docRef = doc(collectionRef, 'PB');
-    
-    const docSnap = await getDoc(docRef);
-    const currentData = docSnap.data() || {};
-    const currentComments = currentData.comments || [];
-
-
-		currentComments.forEach(comment => {
-				const temp_html = `
-					<div class="col">
-						<div class="card border-info mb-3" style="max-width: 100rem" data-password="${comment.Password}">
-							<div class="card-body">
-								<h5 class="card-title">${comment.name}</h5>
-								<p class="card-text">${comment.comment}</p>
-								<button type="button" class="btn btn-outline-warning edit-btn">수정</button>
-								<button type="button" class="btn btn-outline-danger delete-btn">삭제</button>
-							</div>
-						</div>
-					</div>`;
-	
-				$('#card').append(temp_html);
-			});
-		};
-
+		import { doc, setDoc, Timestamp, updateDoc, arrayUnion } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js';
 
 		$('#makeComment').click(async function () {
 			let title = $('#name').val();
 			let Password = $('#Password').val();
 			let comment = $('#comment').val();
 
-			const commentdetail = [['name', title], ['Password', Password], ['comment', comment]];
-			const newComment = Object.fromEntries(commentdetail);
 
-			const collectionRef = collection(db, '팀원1');
-			const docRef = doc(collectionRef, 'PB'); //
+			let temp_html = `
+				<div class="col">
+					<div class="card border-info mb-3" style="max-width: 100rem" data-password="${Password}">
+						<div class="card-body">
+							<h5 class="card-title">${title}</h5>
+							<p class="card-text">${comment}</p>
+							<button type="button" class="btn btn-outline-warning edit-btn">수정</button>
+							<button type="button" class="btn btn-outline-danger delete-btn">삭제</button>
+						</div>
+					</div>
+				</div>`;
+			$('#card').append(temp_html);
 
-			const docSnap = await getDoc(docRef); //가져와
-			const currentData = docSnap.data() || {}; //data가 없으면 빈 객체를 호출해
-			const currentComments = currentData.comments || [];
-			const updatedComments = [...currentComments, newComment];
-
-			await setDoc(docRef, {
-				comments: updatedComments
-			}, { merge: true });
-
-
-
-
-			alert('저장 완료!');
-		window.location.reload();
+			// await addDoc(collection(db, "Profile"), doc);
+			//     alert('저장 완료!');
+			//     window.location.reload();
 		});
 
-				// 삭제기능 //
-				$(document).on('click', '#card .delete-btn', function () {
-    if ($(this).closest('.card-body').find('.password-input').length === 0) {
-        const passwordInput = $('<input>', {
-            type: 'password',
-            class: 'form-control password-input',
-            placeholder: 'Password',
-            style: 'margin-top: 10px; width: 200px; height: 30px;',
-        });
+		// 삭제기능 //
+		$(document).on('click', '#card .delete-btn', function () {
+			const deleteBtn = $(this);
+			const cardBody = deleteBtn.closest('.card-body');
+			const passwordControls = cardBody.find('.password-controls');
 
-        const deleteBtn = $(this);
-        const cardBody = deleteBtn.closest('.card-body');
+			if (passwordControls.length === 0) {
+				const passwordControlsHTML = `
+					<div class="password-controls">
+						<input type="password" class="form-control password-input" placeholder="Password">
+						<button type="button" class="btn btn-outline-primary double-check-btn">비밀번호 확인</button>
+					</div>`;
+				cardBody.append(passwordControlsHTML);
+			} else {
+				passwordControls.show();
+			}
+		});
 
-        cardBody.append(passwordInput);
+		$(document).on('click', '#card .password-controls .double-check-btn', function () {
+			const doubleCheckBtn = $(this);
+			const cardBody = doubleCheckBtn.closest('.card-body');
+			const enteredPassword = cardBody.find('.password-input').val();
+			const storedPassword = cardBody.closest('.card').data('password');
 
-        passwordInput.on('blur', function () {});
-        passwordInput.on('keydown', function (e) {
-            if (e.key === 'Enter') {
-                const enteredPassword = $(this).val();
-				const storedPassword = cardBody.closest('.card').data('password');
+			if (enteredPassword === String(storedPassword)) {
+				const askConfirm = confirm('정말 삭제 하시겠습니까?');
+				if (askConfirm) {
+					doubleCheckBtn.closest('.col').remove();
+				}
+			} else {
+				alert('비밀번호가 틀립니다.');
+			}
 
-                if (enteredPassword === storedPassword) {
-                    deleteBtn.closest('.col').remove();
-                } else {
-                    alert('비밀번호가 틀립니다.');
-                }
-            }
-        });
-        passwordInput.focus();
-    } else {
-    }
-});
-	// Top 버튼 클릭시 페이지 상단으로 이동
-	$(document).ready(function() { 
-				$('#top-btn').click(function(){
-					$('html, body').animate({scrollTop : 0}, 200);
-					return false;
-				});
+			// 입력창 제거
+			cardBody.find('.password-controls').hide();
+		});
+
+
+
+
+		// 수정 기능
+		$(document).on('click', '#card .edit-btn', function () {
+			const card = $(this).closest('.card');
+			// 수정 버튼 클릭시 중복 생성 방지
+			if (card.hasClass('editing')) {
+				return;
+			}
+			const cardBody = card.find('.card-body');
+			const storedPassword = card.data('password');
+
+			const title = cardBody.find('.card-title').text();
+			const comment = cardBody.find('.card-text').text();
+
+			const editForm = `
+				<div class="edit-form">
+					<input type="password" class="form-control edit-password" placeholder="Password">
+					<button type="button" class="btn btn-outline-primary double-check-btn">비밀번호 확인</button>
+					<div class="edit-container" style="display: none;">
+						<input type="text" class="form-control edit-title" value="${title}">
+						<textarea class="form-control edit-comment">${comment}</textarea>
+						<button type="button" class="btn btn-outline-success apply-btn">적용</button>
+						<button type="button" class="btn btn-outline-secondary cancel-btn">취소</button>
+					</div>
+				</div>`;
+
+			cardBody.append(editForm);
+			card.addClass('editing');
+
+			const doubleCheckBtn = cardBody.find('.double-check-btn');
+			const editContainer = cardBody.find('.edit-container');
+			const applyBtn = cardBody.find('.apply-btn');
+			const cancelBtn = cardBody.find('.cancel-btn');
+
+			// 비밀번호 확인 버튼 클릭 시
+			doubleCheckBtn.click(function () {
+				const enteredPassword = cardBody.find('.edit-password').val();
+
+				if (enteredPassword === String(storedPassword)) {
+					editContainer.show();
+				} else {
+					alert('비밀번호가 틀립니다.');
+				}
 			});
-		</script>
-	</head>
 
-	<body>
-		<a href="index.html" id="back">X</a>
-		<div class="cardMain">
-			<div>
-				<img id="photo" class="cardImages" src="https://firebasestorage.googleapis.com/v0/b/our-stage.appspot.com/o/%EA%B9%80%EC%97%B0%EC%9E%AC%EC%82%AC%EC%A7%84.jpg?alt=media&token=d6ddeb8d-b939-4808-ad70-b301d47cb8bc" alt="이미지를 누르면 연결됩니다." />
+			// 적용 버튼 클릭 시
+			applyBtn.click(async function () {
+				const editedTitle = cardBody.find('.edit-title').val();
+				const editedComment = cardBody.find('.edit-comment').val();
+
+				const confirmation = confirm('수정된 내용을 적용하시겠습니까?');
+
+				if (confirmation) {
+					cardBody.find('.card-title').text(editedTitle);
+					cardBody.find('.card-text').text(editedComment);
+
+					resetEditingCard();
+				}
+			});
+
+			// 취소 버튼 클릭 시
+			cancelBtn.click(function () {
+				const confirmation = confirm('수정을 취소하시겠습니까?');
+
+				if (confirmation) {
+					resetEditingCard();
+				}
+			});
+		});
+
+		// 수정 취소 및 완료 시
+		function resetEditingCard() {
+			$('.card.editing').removeClass('editing').find('.edit-form').remove();
+		}
+
+		// Top 버튼 클릭시 페이지 상단으로 이동
+		$(document).ready(function () {
+			$('#top-btn').click(function () {
+				$('html, body').animate({ scrollTop: 0 }, 200);
+				return false;
+			});
+		});
+	</script>
+</head>
+
+<body>
+	<a href="index.html" id="back">X</a>
+	<div class="cardMain">
+		<div>
+			<img id="photo" class="cardImages"
+				src="https://firebasestorage.googleapis.com/v0/b/our-stage.appspot.com/o/%EA%B9%80%EC%97%B0%EC%9E%AC%EC%82%AC%EC%A7%84.jpg?alt=media&token=d6ddeb8d-b939-4808-ad70-b301d47cb8bc"
+				alt="이미지를 누르면 연결됩니다." />
+		</div>
+		<div class="cardStory">
+			<h1>김연재</h1>
+			<p>맡은 일에 최선을 다합니다</p>
+			<a href="https://velog.io/@tmxk1594">블로그</a>
+			<a href="https://github.com/porosadporosad">GitHub</a>
+		</div>
+	</div>
+
+	<form class="comment-wrap">
+		<div class="row">
+			<div class="col">
+				<input id="name" type="text" class="form-control" placeholder="닉네임" aria-label="First name" />
 			</div>
-			<div class="cardStory">
-				<h1>김연재</h1>
-				<p>맡은 일에 최선을 다합니다</p>
-				<a href="https://velog.io/@tmxk1594">블로그</a>
-				<a href="https://github.com/porosadporosad">GitHub</a>
+			<div class="col-auto">
+				<label for="inputPassword2" class="visually-hidden">Password</label>
+				<input type="password" class="form-control" id="Password" placeholder="Password" />
+			</div>
+			<div class="col">
+				<input id="comment" type="text" class="form-control" placeholder="comment" aria-label="Last name" />
+			</div>
+			<div class="col-auto">
+				<button id="makeComment" type="button" class="btn btn-primary mb-3">저장</button>
+				<button type="button" class="btn btn-primary mb-3">취소</button>
 			</div>
 		</div>
+	</form>
+	<button id="top-btn"></button>
 
-		<form class="comment-wrap">
-			<div class="row">
-				<div class="col">
-					<input id="name" type="text" class="form-control" placeholder="닉네임" aria-label="First name" />
-				</div>
-				<div class="col-auto">
-					<label for="inputPassword2" class="visually-hidden">Password</label>
-					<input type="password" class="form-control" id="Password" placeholder="Password" />
-				</div>
-				<div class="col">
-					<input id="comment" type="text" class="form-control" placeholder="comment" aria-label="Last name" />
-				</div>
-				<div class="col-auto">
-					<button id="makeComment" type="button" class="btn btn-primary mb-3">저장</button>
-					<button type="button" class="btn btn-primary mb-3">취소</button>
-				</div>
-			</div>
-		</form>
-		<button id="top-btn"></button >
-
-		<div class="commentBox">
-			<div id="card" class="row row-cols-1 row-cols-md-4 g-4">
-			</div>
+	<div class="commentBox">
+		<div id="card" class="row row-cols-1 row-cols-md-4 g-4">
 		</div>
-	</body>
+	</div>
+</body>
+
 </html>
