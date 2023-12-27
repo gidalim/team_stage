@@ -21,7 +21,7 @@
 		import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js';
 		import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js';
 		import { collection, addDoc } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js';
-		import { getDocs } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js';
+		import { getDocs, deleteDoc } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js';
 
 
 
@@ -41,101 +41,99 @@
 		const app = initializeApp(firebaseConfig);
 		const db = getFirestore(app);
 
-		import { doc, setDoc, Timestamp, updateDoc, arrayUnion, getDoc } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js';
-		import { arrayRemove } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js';
+		import { doc, setDoc, Timestamp, updateDoc, arrayUnion } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js';
 
 
+		async function renderComments() {
+			const querySnapshot = await getDocs(collection(db, "storyCard1"));
+			$('#card').empty();
 
-		window.onload = async function () {
-    const collectionRef = collection(db, '팀원1');
-    const docRef = doc(collectionRef, 'PB');
-    
-    const docSnap = await getDoc(docRef);
-    const currentData = docSnap.data() || {};
-    const currentComments = currentData.comments || [];
+			querySnapshot.forEach(doc => {
+				const comment = doc.data();
+				let temp_html = `
+        <div class="col">
+            <div id=${doc.id} class="card border-info mb-3" style="max-width: 100rem" data-password="${comment.Password}">
+                <div class="card-body">
+                    <h5 class="card-title">${comment.name}</h5>
+                    <p class="card-text">${comment.comment}</p>
+                    <button type="button" class="btn btn-outline-warning edit-btn">수정</button>
+                    <button type="button" class="btn btn-outline-danger delete-btn">삭제</button>
+                </div>
+            </div>
+        </div>`;
 
-
-		currentComments.forEach(comment => {
-				const temp_html = `
-					<div class="col">
-						<div class="card border-info mb-3" style="max-width: 100rem" data-password="${comment.Password}">
-							<div class="card-body">
-								<h5 class="card-title">${comment.name}</h5>
-								<p class="card-text">${comment.comment}</p>
-								<button type="button" class="btn btn-outline-warning edit-btn">수정</button>
-								<button type="button" class="btn btn-outline-danger delete-btn">삭제</button>
-							</div>
-						</div>
-					</div>`;
-	
 				$('#card').append(temp_html);
 			});
+		}
+		window.onload = async function () {
+
+			await renderComments()
 		};
-
-
 		$('#makeComment').click(async function () {
-			let title = $('#name').val();
+
+			let name = $('#name').val();
 			let Password = $('#Password').val();
 			let comment = $('#comment').val();
 
-			const commentdetail = [['name', title], ['Password', Password], ['comment', comment]];
-			const newComment = Object.fromEntries(commentdetail);
+			let doc = {
+				'name': name,
+				'Password': Password,
+				'comment': comment
+			}
 
-			const collectionRef = collection(db, '팀원1');
-			const docRef = doc(collectionRef, 'PB'); //
-
-			const docSnap = await getDoc(docRef); //가져와
-			const currentData = docSnap.data() || {}; //data가 없으면 빈 객체를 호출해
-			const currentComments = currentData.comments || [];
-			const updatedComments = [...currentComments, newComment];
-
-			await setDoc(docRef, {
-				comments: updatedComments
-			}, { merge: true });
-
-
-
+			const docRef = await addDoc(collection(db, "storyCard1"), doc);
 
 			alert('저장 완료!');
-		window.location.reload();
+			window.location.reload();
 		});
+
 
 		// 삭제기능 //
+		
 		$(document).on('click', '#card .delete-btn', function () {
-			const deleteBtn = $(this);
-			const cardBody = deleteBtn.closest('.card-body');
-			const passwordControls = cardBody.find('.password-controls');
+		
+		const deleteBtn = $(this);
+		const cardBody = deleteBtn.closest('.card-body');
+		const passwordControls = cardBody.find('.password-controls');
 
-			if (passwordControls.length === 0) {
-				const passwordControlsHTML = `
-					<div class="password-controls">
-						<input type="password" class="form-control password-input" placeholder="Password">
-						<button type="button" class="btn btn-outline-primary double-check-btn">비밀번호 확인</button>
-					</div>`;
-				cardBody.append(passwordControlsHTML);
-			} else {
-				passwordControls.show();
+		if (passwordControls.length === 0) {
+			const passwordControlsHTML = `
+				<div class="password-controls">
+					<input type="password" class="form-control password-input" placeholder="Password">
+					<button type="button" class="btn btn-outline-primary double-check-btn" >비밀번호 확인</button>
+				</div>`;
+			cardBody.append(passwordControlsHTML);
+			
+
+		} else {
+			passwordControls.show();
+		}
+	});
+	
+
+	$(document).on('click', '#card .password-controls .double-check-btn', async function () {
+		const doubleCheckBtn = $(this);
+		const docId = doubleCheckBtn.closest('.card')[0].id
+		const cardBody = doubleCheckBtn.closest('.card-body');
+		const enteredPassword = cardBody.find('.password-input').val();
+		const storedPassword = cardBody.closest('.card').data('password');
+
+		if (enteredPassword === String(storedPassword)) {
+			const askConfirm = confirm('정말 삭제 하시겠습니까?');
+			if (askConfirm) {
+				
+				await deleteDoc(doc(db, 'storyCard1', docId));
+
+
+				doubleCheckBtn.closest('.col').remove();
 			}
-		});
+		} else {
+			alert('비밀번호가 틀립니다.');
+		}
 
-		$(document).on('click', '#card .password-controls .double-check-btn', function () {
-			const doubleCheckBtn = $(this);
-			const cardBody = doubleCheckBtn.closest('.card-body');
-			const enteredPassword = cardBody.find('.password-input').val();
-			const storedPassword = cardBody.closest('.card').data('password');
-
-			if (enteredPassword === String(storedPassword)) {
-				const askConfirm = confirm('정말 삭제 하시겠습니까?');
-				if (askConfirm) {
-					doubleCheckBtn.closest('.col').remove();
-				}
-			} else {
-				alert('비밀번호가 틀립니다.');
-			}
-
-			// 입력창 제거
-			cardBody.find('.password-controls').hide();
-		});
+		// 입력창 제거
+		cardBody.find('.password-controls').hide();
+	});
 
 
 
@@ -143,7 +141,8 @@
 		// 수정 기능
 		$(document).on('click', '#card .edit-btn', function () {
 			const card = $(this).closest('.card');
-			// 수정 버튼 클릭시 중복 생성 방지
+			const docId = card[0].id
+			
 			if (card.hasClass('editing')) {
 				return;
 			}
@@ -194,6 +193,13 @@
 				if (confirmation) {
 					cardBody.find('.card-title').text(editedTitle);
 					cardBody.find('.card-text').text(editedComment);
+
+					const modifycomment = doc(db, "storyCard1", docId);
+					
+					await updateDoc(modifycomment, {
+						name: editedTitle,
+            comment: editedComment
+					});
 
 					resetEditingCard();
 				}

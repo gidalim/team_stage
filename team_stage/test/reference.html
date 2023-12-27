@@ -18,10 +18,12 @@
 
 	<script type="module">
 		// Firebase SDK 라이브러리 가져오기
-		import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
-		import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js";
-		import { getFirestore, collection, getDocs } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js';
-		import { addDoc } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js';
+		import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js';
+		import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js';
+		import { collection, addDoc } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js';
+		import { getDocs } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js';
+
+
 
 		// Firebase 구성 정보 설정
 		const firebaseConfig = {
@@ -40,20 +42,23 @@
 		const db = getFirestore(app);
 
 		import { doc, setDoc, Timestamp, updateDoc, arrayUnion, getDoc } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js';
-		import { arrayRemove } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js';
+		import { arrayRemove, deleteField } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js';
 
 
+
+
+		let docRef;
 
 		window.onload = async function () {
-    const collectionRef = collection(db, '팀원1');
-    const docRef = doc(collectionRef, 'PB');
-    
-    const docSnap = await getDoc(docRef);
-    const currentData = docSnap.data() || {};
-    const currentComments = currentData.comments || [];
+			const collectionRef = collection(db, '팀원1');
+			docRef = doc(collectionRef, 'PB');
+
+			const docSnap = await getDoc(docRef);
+			const currentData = docSnap.data() || {};
+			const currentComments = currentData.comments || [];
 
 
-		currentComments.forEach(comment => {
+			currentComments.forEach(comment => {
 				const temp_html = `
 					<div class="col">
 						<div class="card border-info mb-3" style="max-width: 100rem" data-password="${comment.Password}">
@@ -65,11 +70,15 @@
 							</div>
 						</div>
 					</div>`;
-	
+
 				$('#card').append(temp_html);
 			});
 		};
 
+		//익명 ID부여용
+		function generateUniqueId() {
+			return new Date().getTime().toString();
+		}
 
 		$('#makeComment').click(async function () {
 			let title = $('#name').val();
@@ -80,23 +89,30 @@
 			const newComment = Object.fromEntries(commentdetail);
 
 			const collectionRef = collection(db, '팀원1');
-			const docRef = doc(collectionRef, 'PB'); //
+			docRef = doc(collectionRef, 'PB'); //
 
 			const docSnap = await getDoc(docRef); //가져와
 			const currentData = docSnap.data() || {}; //data가 없으면 빈 객체를 호출해
 			const currentComments = currentData.comments || [];
-			const updatedComments = [...currentComments, newComment];
+
+			//댓글 추가시 ID 생성
+			const newCommentWithID = {
+				id: generateUniqueId(),
+				...newComment
+			};
+
+			const updatedComments = [...currentComments, newCommentWithID];
 
 			await setDoc(docRef, {
 				comments: updatedComments
 			}, { merge: true });
 
 
-
-
 			alert('저장 완료!');
-		window.location.reload();
+			window.location.reload();
 		});
+
+
 
 		// 삭제기능 //
 		$(document).on('click', '#card .delete-btn', function () {
@@ -116,15 +132,36 @@
 			}
 		});
 
-		$(document).on('click', '#card .password-controls .double-check-btn', function () {
+		$(document).on('click', '#card .password-controls .double-check-btn', async function () {
 			const doubleCheckBtn = $(this);
 			const cardBody = doubleCheckBtn.closest('.card-body');
 			const enteredPassword = cardBody.find('.password-input').val();
 			const storedPassword = cardBody.closest('.card').data('password');
 
+			const commentIdToDelete = doubleCheckBtn.closest('.col').find('.card').data('id');
+
 			if (enteredPassword === String(storedPassword)) {
 				const askConfirm = confirm('정말 삭제 하시겠습니까?');
 				if (askConfirm) {
+
+					const docSnap = await getDoc(docRef);
+					const currentData = docSnap.data() || {};
+					const currentComments = currentData.comments || [];
+
+
+					const updatedComments = currentComments.filter(comment => comment.id !== commentIdToDelete);
+					// 
+
+					await updateDoc(docRef, {
+						comments: updatedComments
+					});
+
+					
+						
+					
+
+
+
 					doubleCheckBtn.closest('.col').remove();
 				}
 			} else {
@@ -142,6 +179,7 @@
 		$(document).on('click', '#card .edit-btn', function () {
 			const card = $(this).closest('.card');
 			// 수정 버튼 클릭시 중복 생성 방지
+			// 삭제 1 수정 1 할당되어있어서 이 부분은 수정해야합니다.
 			if (card.hasClass('editing')) {
 				return;
 			}
@@ -227,14 +265,14 @@
 	<div class="cardMain">
 		<div>
 			<img id="photo" class="cardImages"
-				src="https://firebasestorage.googleapis.com/v0/b/our-stage.appspot.com/o/%EC%A0%95%ED%95%B4%EC%A4%80%EC%82%AC%EC%A7%84.jpg?alt=media&token=ae8df09d-ac25-4f92-9d74-c30dd35775c3"
+				src="https://firebasestorage.googleapis.com/v0/b/our-stage.appspot.com/o/%EB%B0%95%EA%B0%95%ED%86%A0%EC%82%AC%EC%A7%84.PNG?alt=media&token=4de69026-8f39-4883-a6c1-88adf34e0124"
 				alt="이미지를 누르면 연결됩니다." />
 		</div>
 		<div class="cardStory">
-			<h1>정해준</h1>
-			<p>경청을 잘 한다고 생각합니다.</p>
-			<a href="https://velog.io/@decidedcard">블로그</a>
-			<a href="https://github.com/DecidedCard">GitHub</a>
+			<h1>박강토</h1>
+			<p>정리와 브리핑을 잘 하는 편입니다.</p>
+			<a href="https://gidalim4u.tistory.com/">블로그</a>
+			<a href="https://github.com/gidalim/">GitHub</a>
 		</div>
 	</div>
 
@@ -260,7 +298,8 @@
 	<button id="top-btn"></button>
 
 	<div class="commentBox">
-		<div id="card" class="row row-cols-1 row-cols-md-4 g-4"></div>
+		<div id="card" class="row row-cols-1 row-cols-md-4 g-4">
+		</div>
 	</div>
 </body>
 
