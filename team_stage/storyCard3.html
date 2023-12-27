@@ -83,7 +83,7 @@
 							const enteredPassword = $(this).val();
 							const storedPassword = cardBody.closest('.card').data('password');
 
-							if (enteredPassword === storedPassword) {
+							if (enteredPassword === String(storedPassword)) {
 								deleteBtn.closest('.col').remove();
 							} else {
 								alert('비밀번호가 틀립니다.');
