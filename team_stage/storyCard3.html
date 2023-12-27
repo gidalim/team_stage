@@ -35,11 +35,11 @@
 				measurementId: 'G-G2QMB19RVB',
 			};
 
-		// Firebase 인스턴스 초기화
-		const app = initializeApp(firebaseConfig);
-		const db = getFirestore(app);
-		// const data = firestore.collection("profile")
-		// console.log(data)
+			// Firebase 인스턴스 초기화
+			const app = initializeApp(firebaseConfig);
+			const db = getFirestore(app);
+			// const data = firestore.collection("profile")
+			// console.log(data)
 
 			$('#makeComment').click(async function () {
 				let title = $('#name').val();
@@ -60,11 +60,10 @@
 				</div>`;
 				$('#card').append(temp_html);
 
-				// await addDoc(collection(db, "Profile"), doc);
-        //     alert('저장 완료!');
-        //     window.location.reload();
+				await addDoc(collection(db, "Profile"), doc);
+            alert('저장 완료!');
+            window.location.reload();
 		});
-
 				// 삭제기능 //
 				$(document).on('click', '#card .delete-btn', function () {
     if ($(this).closest('.card-body').find('.password-input').length === 0) {
@@ -86,7 +85,7 @@
                 const enteredPassword = $(this).val();
 				const storedPassword = cardBody.closest('.card').data('password');
 
-                if (enteredPassword === storedPassword) {
+                if (enteredPassword === String(storedPassword)) {
                     deleteBtn.closest('.col').remove();
                 } else {
                     alert('비밀번호가 틀립니다.');
@@ -104,7 +103,8 @@
 					return false;
 				});
 			});
-	</script>
+
+	</script> 
 	</head>
 
 	<body>
@@ -145,8 +145,17 @@
 
 	<div class="commentBox">
 		<div id="card" class="row row-cols-1 row-cols-md-4 g-4">
+			<div class="col">
+				<div class="card border-info mb-3">
+					<div class="card-body">
+						<h5 class="card-title">닉네임</h5>
+						<p class="card-text">comment</p>
+						<button type="button" class="btn btn-outline-warning">수정</button>
+						<button type="button" class="btn btn-outline-danger">삭제</button>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>
-</html>
-
+</html>s
