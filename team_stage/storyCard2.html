@@ -33,34 +33,67 @@
 				measurementId: 'G-G2QMB19RVB',
 			};
 
-			// Firebase 인스턴스 초기화
-			const app = initializeApp(firebaseConfig);
-			const db = getFirestore(app);
+		// Firebase 인스턴스 초기화
+		const app = initializeApp(firebaseConfig);
+		const db = getFirestore(app);
 
-			import { doc, setDoc, Timestamp, updateDoc, arrayUnion } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js';
+		import { doc, setDoc, Timestamp, updateDoc, arrayUnion, getDoc } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js';
+		import { arrayRemove } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js';
 
-			$('#makeComment').click(async function () {
-				let title = $('#name').val();
-				let Password = $('#Password').val();
-				let comment = $('#comment').val();
-		
-			
-				let temp_html = `
-				<div class="col">
-					<div class="card border-info mb-3" style="max-width: 100rem" data-password="${Password}">
-						<div class="card-body">
-							<h5 class="card-title">${title}</h5>
-							<p class="card-text">${comment}</p>
-							<button type="button" class="btn btn-outline-warning">수정</button>
-							<button type="button" class="btn btn-outline-danger delete-btn">삭제</button>
+
+
+		window.onload = async function () {
+    const collectionRef = collection(db, '팀원1');
+    const docRef = doc(collectionRef, 'PB');
+    
+    const docSnap = await getDoc(docRef);
+    const currentData = docSnap.data() || {};
+    const currentComments = currentData.comments || [];
+
+
+		currentComments.forEach(comment => {
+				const temp_html = `
+					<div class="col">
+						<div class="card border-info mb-3" style="max-width: 100rem" data-password="${comment.Password}">
+							<div class="card-body">
+								<h5 class="card-title">${comment.name}</h5>
+								<p class="card-text">${comment.comment}</p>
+								<button type="button" class="btn btn-outline-warning edit-btn">수정</button>
+								<button type="button" class="btn btn-outline-danger delete-btn">삭제</button>
+							</div>
 						</div>
-					</div>
-				</div>`;
+					</div>`;
+	
 				$('#card').append(temp_html);
+			});
+		};
 
-				// await addDoc(collection(db, "Profile"), doc);
-        //     alert('저장 완료!');
-        //     window.location.reload();
+
+		$('#makeComment').click(async function () {
+			let title = $('#name').val();
+			let Password = $('#Password').val();
+			let comment = $('#comment').val();
+
+			const commentdetail = [['name', title], ['Password', Password], ['comment', comment]];
+			const newComment = Object.fromEntries(commentdetail);
+
+			const collectionRef = collection(db, '팀원1');
+			const docRef = doc(collectionRef, 'PB'); //
+
+			const docSnap = await getDoc(docRef); //가져와
+			const currentData = docSnap.data() || {}; //data가 없으면 빈 객체를 호출해
+			const currentComments = currentData.comments || [];
+			const updatedComments = [...currentComments, newComment];
+
+			await setDoc(docRef, {
+				comments: updatedComments
+			}, { merge: true });
+
+
+
+
+			alert('저장 완료!');
+		window.location.reload();
 		});
 
 				// 삭제기능 //
