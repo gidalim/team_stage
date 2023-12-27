@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>소개하기</title>
 
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>소개하기</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<!-- //jQuery -->
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<!-- //jQuery -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+		<!-- //bootstrap -->
 
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
-	<!-- //bootstrap -->
-
-	<link rel="stylesheet" href="sub.css" />
-	<!-- //css -->
+		<link rel="stylesheet" href="sub.css" />
+		<!-- //css -->
 
 		<script type="module">
 			// Firebase SDK 라이브러리 가져오기
@@ -35,25 +33,24 @@
 				measurementId: 'G-G2QMB19RVB',
 			};
 
-		// Firebase 인스턴스 초기화
-		const app = initializeApp(firebaseConfig);
-		const db = getFirestore(app);
-		// const data = firestore.collection("profile")
-		// console.log(data)
+			// Firebase 인스턴스 초기화
+			const app = initializeApp(firebaseConfig);
+			const db = getFirestore(app);
+			// const data = firestore.collection("profile")
+			// console.log(data)
 
 			$('#makeComment').click(async function () {
 				let title = $('#name').val();
 				let Password = $('#Password').val();
 				let comment = $('#comment').val();
-		
-			
+
 				let temp_html = `
 				<div class="col">
 					<div class="card border-info mb-3" style="max-width: 100rem" data-password="${Password}">
 						<div class="card-body">
 							<h5 class="card-title">${title}</h5>
 							<p class="card-text">${comment}</p>
-							<button type="button" class="btn btn-outline-warning">수정</button>
+							<button type="button" class="btn btn-outline-warning edit-btn">수정</button>
 							<button type="button" class="btn btn-outline-danger delete-btn">삭제</button>
 						</div>
 					</div>
@@ -61,50 +58,121 @@
 				$('#card').append(temp_html);
 
 				// await addDoc(collection(db, "Profile"), doc);
-        //     alert('저장 완료!');
-        //     window.location.reload();
-		});
+				//     alert('저장 완료!');
+				//     window.location.reload();
+			});
 
-				// 삭제기능 //
-				$(document).on('click', '#card .delete-btn', function () {
-    if ($(this).closest('.card-body').find('.password-input').length === 0) {
-        const passwordInput = $('<input>', {
-            type: 'password',
-            class: 'form-control password-input',
-            placeholder: 'Password',
-            style: 'margin-top: 10px; width: 200px; height: 30px;',
-        });
+			// 삭제기능 //
+			$(document).on('click', '#card .delete-btn', function () {
+				if ($(this).closest('.card-body').find('.password-input').length === 0) {
+					const passwordInput = $('<input>', {
+						type: 'password',
+						class: 'form-control password-input',
+						placeholder: 'Password',
+						style: 'margin-top: 10px; width: 200px; height: 30px;',
+					});
 
-        const deleteBtn = $(this);
-        const cardBody = deleteBtn.closest('.card-body');
+					const deleteBtn = $(this);
+					const cardBody = deleteBtn.closest('.card-body');
 
-        cardBody.append(passwordInput);
+					cardBody.append(passwordInput);
 
-        passwordInput.on('blur', function () {});
-        passwordInput.on('keydown', function (e) {
-            if (e.key === 'Enter') {
-                const enteredPassword = $(this).val();
-				const storedPassword = cardBody.closest('.card').data('password');
+					passwordInput.on('blur', function () {});
+					passwordInput.on('keydown', function (e) {
+						if (e.key === 'Enter') {
+							const enteredPassword = $(this).val();
+							const storedPassword = cardBody.closest('.card').data('password');
 
-                if (enteredPassword === storedPassword) {
-                    deleteBtn.closest('.col').remove();
-                } else {
-                    alert('비밀번호가 틀립니다.');
-                }
-            }
-        });
-        passwordInput.focus();
-    } else {
-    }
-});
-	// Top 버튼 클릭시 페이지 상단으로 이동
-	$(document).ready(function() { 
-				$('#top-btn').click(function(){
-					$('html, body').animate({scrollTop : 0}, 200);
+							if (enteredPassword === storedPassword) {
+								deleteBtn.closest('.col').remove();
+							} else {
+								alert('비밀번호가 틀립니다.');
+							}
+						}
+					});
+					passwordInput.focus();
+				} else {
+				}
+			});
+
+			// 수정 기능
+			$(document).on('click', '#card .edit-btn', function () {
+				const card = $(this).closest('.card');
+				const cardBody = card.find('.card-body');
+				const storedPassword = card.data('password');
+
+				const title = cardBody.find('.card-title').text();
+				const comment = cardBody.find('.card-text').text();
+
+				const editForm = `
+				<div class="edit-form">
+					<input type="password" class="form-control edit-password" placeholder="Password">
+					<button type="button" class="btn btn-outline-primary double-check-btn">비밀번호 확인</button>
+					<div class="edit-container" style="display: none;">
+						<input type="text" class="form-control edit-title" value="${title}">
+						<textarea class="form-control edit-comment">${comment}</textarea>
+						<button type="button" class="btn btn-outline-success apply-btn">적용</button>
+						<button type="button" class="btn btn-outline-secondary cancel-btn">취소</button>
+					</div>
+				</div>`;
+
+				cardBody.append(editForm);
+				card.addClass('editing');
+
+				const doubleCheckBtn = cardBody.find('.double-check-btn');
+				const editContainer = cardBody.find('.edit-container');
+				const applyBtn = cardBody.find('.apply-btn');
+				const cancelBtn = cardBody.find('.cancel-btn');
+
+				// 비밀번호 확인 버튼 클릭 시
+				doubleCheckBtn.click(function () {
+					const enteredPassword = cardBody.find('.edit-password').val();
+
+					if (enteredPassword === String(storedPassword)) {
+						editContainer.show();
+					} else {
+						alert('비밀번호가 틀립니다.');
+					}
+				});
+
+				// 적용 버튼 클릭 시
+				applyBtn.click(async function () {
+					const editedTitle = cardBody.find('.edit-title').val();
+					const editedComment = cardBody.find('.edit-comment').val();
+
+					const confirmation = confirm('수정된 내용을 적용하시겠습니까?');
+
+					if (confirmation) {
+						cardBody.find('.card-title').text(editedTitle);
+						cardBody.find('.card-text').text(editedComment);
+
+						resetEditingCard();
+					}
+				});
+
+				// 취소 버튼 클릭 시
+				cancelBtn.click(function () {
+					const confirmation = confirm('수정을 취소하시겠습니까?');
+
+					if (confirmation) {
+						resetEditingCard();
+					}
+				});
+			});
+
+			// 수정 취소 및 완료 시
+			function resetEditingCard() {
+				$('.card.editing').removeClass('editing').find('.edit-form').remove();
+			}
+
+			// Top 버튼 클릭시 페이지 상단으로 이동
+			$(document).ready(function () {
+				$('#top-btn').click(function () {
+					$('html, body').animate({ scrollTop: 0 }, 200);
 					return false;
 				});
 			});
-	</script>
+		</script>
 	</head>
 
 	<body>
@@ -120,7 +188,7 @@
 				<a href="https://github.com/DecidedCard">GitHub</a>
 			</div>
 		</div>
-		
+
 		<form class="comment-wrap">
 			<div class="row">
 				<div class="col">
@@ -139,14 +207,11 @@
 				</div>
 			</div>
 		</form>
-	
-		
-		<button id="top-btn"></button >
 
-	<div class="commentBox">
-		<div id="card" class="row row-cols-1 row-cols-md-4 g-4">
+		<button id="top-btn"></button>
+
+		<div class="commentBox">
+			<div id="card" class="row row-cols-1 row-cols-md-4 g-4"></div>
 		</div>
-	</div>
-</body>
+	</body>
 </html>
-
