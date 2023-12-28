@@ -12,7 +12,7 @@
 }
 
 body {
-	background: linear-gradient(40deg, rgb(229, 197, 233), rgb(25, 71, 75), #15194e);
+	background: #bfbfbf;
 }
 
 #back {
@@ -68,8 +68,7 @@ a {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	color: #fff;
-	text-shadow: 3px 4px 5px #111;
+	color: #333333;
 	margin-top: 250px;
 }
 
@@ -79,10 +78,11 @@ p {
 /*블로그, 깃허브 링크 걸기 추가 및 색상 변경*/
 .cardStory a {
 	font-size: 20px;
+	
 }
 
 .cardStory a:link {
-	color: #fff;
+	color: #333333;
 }
 
 .cardStory a:link:hover {
