@@ -11,12 +11,7 @@
 	font-style: normal;
 }
 
-html {
-	height: 100vh;
-}
-
 body {
-	width: 100%;
 	background: linear-gradient(40deg, rgb(229, 197, 233), rgb(25, 71, 75), #15194e);
 }
 
@@ -123,7 +118,6 @@ p {
 	position: relative;
 	margin: 5 0px;
 	word-break: break-all;
-
 	border-radius: 8px;
 	display: flex;
 	flex-direction: column;
@@ -136,4 +130,6 @@ p {
 
 .commentBox #card .col .card-body {
 	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+	background-image: linear-gradient(to right, #d7d2cc 0%, #304352 100%);
+	color: #555;
 }

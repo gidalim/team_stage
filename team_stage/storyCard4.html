@@ -47,12 +47,12 @@
 					const comment = doc.data();
 					let temp_html = `
         <div class="col">
-            <div id=${doc.id} class="card border-light mb-3" style="max-width: 100rem" data-password="${comment.Password}">
+            <div id=${doc.id} class="card border-light mb-3" style="max-width: 100rem " data-password="${comment.Password}">
                 <div class="card-body">
                     <h5 class="card-title">${comment.name}</h5>
                     <p class="card-text">${comment.comment}</p>
-                    <button type="button" class="btn btn-outline-warning edit-btn">수정</button>
-                    <button type="button" class="btn btn-outline-danger delete-btn">삭제</button>
+                    <button type="button" class="btn btn-outline-primary edit-btn">수정</button>
+                    <button type="button" class="btn btn-primary delete-btn">삭제</button>
                 </div>
             </div>
         </div>`;
