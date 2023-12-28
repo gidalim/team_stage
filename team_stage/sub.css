@@ -30,19 +30,19 @@ a {
 	text-decoration-line: none;
 }
 
-#top-btn { 
-    position: fixed;
-    bottom: 40px;
-    right: 40px;
-    z-index: 999;
+#top-btn {
+	position: fixed;
+	bottom: 40px;
+	right: 40px;
+	z-index: 999;
 	background-image: url(topicon.png);
-	background-position:center;
-	background-repeat:no-repeat;	
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
-    width: 68px;
-    height: 68px;
+	background-position: center;
+	background-repeat: no-repeat;
+	border: none;
+	cursor: pointer;
+	border-radius: 50%;
+	width: 68px;
+	height: 68px;
 }
 
 .cardMain {
@@ -103,7 +103,6 @@ p {
 	justify-content: center;
 	align-items: center;
 	margin: 320px auto 50px auto;
-	
 }
 
 .comment-wrap .row #comment {
@@ -118,12 +117,11 @@ p {
 
 .commentBox {
 	margin: 50px;
-	
 }
 
 .commentBox #card {
 	position: relative;
-	margin: 5	0px;
+	margin: 5 0px;
 	word-break: break-all;
 
 	border-radius: 8px;
@@ -134,7 +132,6 @@ p {
 }
 .commentBox #card .col {
 	width: 1000px;
-
 }
 
 .commentBox #card .col .card-body {
