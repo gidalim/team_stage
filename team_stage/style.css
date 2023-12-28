@@ -11,6 +11,10 @@
 	font-style: normal;
 }
 
+html {
+	height: 100vh;
+}
+
 body {
 	width: 100%;
 	background: linear-gradient(40deg, rgb(171, 170, 172), rgb(180, 180, 180), #929292);
@@ -20,7 +24,6 @@ body {
 	background-color: #bfbfbf;
 	margin-left: 20px;
 	font-family: 'Ubuntu', sans-serif;
-	height: 100vh;
 	box-shadow: 0 0 30px 0 black;
 	border-radius: 10px;
 	padding-bottom: 70%;
@@ -60,9 +63,9 @@ body {
 }
 
 .main1-right {
-	width: 360px;
-	height: 446px;
-	text-shadow: 3px 4px 5px #111;
+	width: 380px;
+	height: 490px;
+	text-shadow: 0px 1px 2px #222;
 }
 
 .main1-right summary:hover {
