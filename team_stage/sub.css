@@ -135,3 +135,18 @@ p {
 	background-color: #4d648d;
 	color: #cee8ff;
 }
+
+.col-auto button {
+	background-color: #926b6a;
+	border: none;
+}
+
+.col-auto button:hover {
+	background-color: #5c4342;
+	border: none;
+}
+
+.col-auto button:focus   {
+	background-color: #926b6a;
+	border: none;
+}
