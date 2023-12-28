@@ -86,11 +86,11 @@ p {
 }
 
 .cardStory a:link:hover {
-	color: lightgray;
+	color: #333333;
 }
 
 .cardStory a:visited {
-	color: antiquewhite;
+	color: #333333;
 }
 
 .comment-wrap {
