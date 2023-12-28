@@ -1,155 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>소개하기</title>
 
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>소개하기</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<!-- //jQuery -->
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<!-- //jQuery -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+		<!-- //bootstrap -->
 
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
-	<!-- //bootstrap -->
+		<link rel="stylesheet" href="sub.css" />
+		<!-- //css -->
 
-	<link rel="stylesheet" href="sub.css" />
-	<!-- //css -->
+		<script type="module">
+			// Firebase SDK 라이브러리 가져오기
+			import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js';
+			import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js';
+			import { collection, addDoc } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js';
+			import { getDocs, deleteDoc } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js';
 
-	<script type="module">
-		// Firebase SDK 라이브러리 가져오기
-		import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js';
-		import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js';
-		import { collection, addDoc } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js';
-		import { getDocs, deleteDoc } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js';
+			// Firebase 구성 정보 설정
+			const firebaseConfig = {
+				// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+				apiKey: 'AIzaSyDcQ6Q78akg6Oo9Z2VO5APf-QQ7S7kn9DQ',
+				authDomain: 'our-stage.firebaseapp.com',
+				projectId: 'our-stage',
+				storageBucket: 'our-stage.appspot.com',
+				messagingSenderId: '999213003989',
+				appId: '1:999213003989:web:774432a35de3c233c69e5c',
+				measurementId: 'G-G2QMB19RVB',
+			};
 
-		// Firebase 구성 정보 설정
-		const firebaseConfig = {
-			// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-			apiKey: 'AIzaSyDcQ6Q78akg6Oo9Z2VO5APf-QQ7S7kn9DQ',
-			authDomain: 'our-stage.firebaseapp.com',
-			projectId: 'our-stage',
-			storageBucket: 'our-stage.appspot.com',
-			messagingSenderId: '999213003989',
-			appId: '1:999213003989:web:774432a35de3c233c69e5c',
-			measurementId: 'G-G2QMB19RVB',
-		};
+			// Firebase 인스턴스 초기화
+			const app = initializeApp(firebaseConfig);
+			const db = getFirestore(app);
 
-		// Firebase 인스턴스 초기화
-		const app = initializeApp(firebaseConfig);
-		const db = getFirestore(app);
+			import { doc, setDoc, Timestamp, updateDoc, arrayUnion } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js';
 
-		import { doc, setDoc, Timestamp, updateDoc, arrayUnion } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js';
+			async function renderComments() {
+				const querySnapshot = await getDocs(collection(db, 'storyCard4'));
+				$('#card').empty();
 
-		async function renderComments() {
-			const querySnapshot = await getDocs(collection(db, "storyCard4"));
-			$('#card').empty();
-
-			querySnapshot.forEach(doc => {
-				const comment = doc.data();
-				let temp_html = `
+				querySnapshot.forEach((doc) => {
+					const comment = doc.data();
+					let temp_html = `
         <div class="col">
-            <div id=${doc.id} class="card border-info mb-3" style="max-width: 100rem" data-password="${comment.Password}">
+            <div id=${doc.id} class="card border-light mb-3" style="max-width: 100rem " data-password="${comment.Password}">
                 <div class="card-body">
                     <h5 class="card-title">${comment.name}</h5>
                     <p class="card-text">${comment.comment}</p>
-                    <button type="button" class="btn btn-outline-warning edit-btn">수정</button>
-                    <button type="button" class="btn btn-outline-danger delete-btn">삭제</button>
+                    <button type="button" class="btn btn-outline-primary edit-btn">수정</button>
+                    <button type="button" class="btn btn-primary delete-btn">삭제</button>
                 </div>
             </div>
         </div>`;
 
-				$('#card').append(temp_html);
-			});
-		}
-		window.onload = async function () {
-
-			await renderComments()
-		};
-		$('#makeComment').click(async function () {
-
-			let name = $('#name').val();
-			let Password = $('#Password').val();
-			let comment = $('#comment').val();
-
-			let doc = {
-				'name': name,
-				'Password': Password,
-				'comment': comment
+					$('#card').append(temp_html);
+				});
 			}
+			window.onload = async function () {
+				await renderComments();
+			};
+			$('#makeComment').click(async function () {
+				let name = $('#name').val();
+				let Password = $('#Password').val();
+				let comment = $('#comment').val();
 
-			const docRef = await addDoc(collection(db, "storyCard4"), doc);
+				let doc = {
+					name: name,
+					Password: Password,
+					comment: comment,
+				};
 
-			alert('저장 완료!');
-			window.location.reload();
-		});
+				const docRef = await addDoc(collection(db, 'storyCard4'), doc);
 
+				alert('저장 완료!');
+				window.location.reload();
+			});
 
-		// 삭제기능 //
-		
-		$(document).on('click', '#card .delete-btn', function () {
-		
-		const deleteBtn = $(this);
-		const cardBody = deleteBtn.closest('.card-body');
-		const passwordControls = cardBody.find('.password-controls');
+			// 삭제기능 //
 
-		if (passwordControls.length === 0) {
-			const passwordControlsHTML = `
+			$(document).on('click', '#card .delete-btn', function () {
+				const deleteBtn = $(this);
+				const cardBody = deleteBtn.closest('.card-body');
+				const passwordControls = cardBody.find('.password-controls');
+
+				if (passwordControls.length === 0) {
+					const passwordControlsHTML = `
 				<div class="password-controls">
 					<input type="password" class="form-control password-input" placeholder="Password">
 					<button type="button" class="btn btn-outline-primary double-check-btn" >비밀번호 확인</button>
 				</div>`;
-			cardBody.append(passwordControlsHTML);
-			
+					cardBody.append(passwordControlsHTML);
+				} else {
+					passwordControls.show();
+				}
+			});
 
-		} else {
-			passwordControls.show();
-		}
-	});
-	
+			$(document).on('click', '#card .password-controls .double-check-btn', async function () {
+				const doubleCheckBtn = $(this);
+				const docId = doubleCheckBtn.closest('.card')[0].id;
+				const cardBody = doubleCheckBtn.closest('.card-body');
+				const enteredPassword = cardBody.find('.password-input').val();
+				const storedPassword = cardBody.closest('.card').data('password');
 
-	$(document).on('click', '#card .password-controls .double-check-btn', async function () {
-		const doubleCheckBtn = $(this);
-		const docId = doubleCheckBtn.closest('.card')[0].id
-		const cardBody = doubleCheckBtn.closest('.card-body');
-		const enteredPassword = cardBody.find('.password-input').val();
-		const storedPassword = cardBody.closest('.card').data('password');
+				if (enteredPassword === String(storedPassword)) {
+					const askConfirm = confirm('정말 삭제 하시겠습니까?');
+					if (askConfirm) {
+						await deleteDoc(doc(db, 'storyCard4', docId));
 
-		if (enteredPassword === String(storedPassword)) {
-			const askConfirm = confirm('정말 삭제 하시겠습니까?');
-			if (askConfirm) {
-				
-				await deleteDoc(doc(db, 'storyCard4', docId));
+						doubleCheckBtn.closest('.col').remove();
+					}
+				} else {
+					alert('비밀번호가 틀립니다.');
+				}
 
+				// 입력창 제거
+				cardBody.find('.password-controls').hide();
+			});
 
-				doubleCheckBtn.closest('.col').remove();
-			}
-		} else {
-			alert('비밀번호가 틀립니다.');
-		}
+			// 수정 기능
+			$(document).on('click', '#card .edit-btn', function () {
+				const card = $(this).closest('.card');
+				const docId = card[0].id;
+				// 수정 버튼 클릭시 중복 생성 방지
+				if (card.hasClass('editing')) {
+					return;
+				}
+				const cardBody = card.find('.card-body');
+				const storedPassword = card.data('password');
 
-		// 입력창 제거
-		cardBody.find('.password-controls').hide();
-	});
+				const title = cardBody.find('.card-title').text();
+				const comment = cardBody.find('.card-text').text();
 
-
-
-
-		// 수정 기능
-		$(document).on('click', '#card .edit-btn', function () {
-			const card = $(this).closest('.card');
-			const docId = card[0].id
-			// 수정 버튼 클릭시 중복 생성 방지
-			if (card.hasClass('editing')) {
-				return;
-			}
-			const cardBody = card.find('.card-body');
-			const storedPassword = card.data('password');
-
-			const title = cardBody.find('.card-title').text();
-			const comment = cardBody.find('.card-text').text();
-
-			const editForm = `
+				const editForm = `
 				<div class="edit-form">
 					<input type="password" class="form-control edit-password" placeholder="Password">
 					<button type="button" class="btn btn-outline-primary double-check-btn">비밀번호 확인</button>
@@ -161,113 +147,109 @@
 					</div>
 				</div>`;
 
-			cardBody.append(editForm);
-			card.addClass('editing');
+				cardBody.append(editForm);
+				card.addClass('editing');
 
-			const doubleCheckBtn = cardBody.find('.double-check-btn');
-			const editContainer = cardBody.find('.edit-container');
-			const applyBtn = cardBody.find('.apply-btn');
-			const cancelBtn = cardBody.find('.cancel-btn');
+				const doubleCheckBtn = cardBody.find('.double-check-btn');
+				const editContainer = cardBody.find('.edit-container');
+				const applyBtn = cardBody.find('.apply-btn');
+				const cancelBtn = cardBody.find('.cancel-btn');
 
-			// 비밀번호 확인 버튼 클릭 시
-			doubleCheckBtn.click(function () {
-				const enteredPassword = cardBody.find('.edit-password').val();
+				// 비밀번호 확인 버튼 클릭 시
+				doubleCheckBtn.click(function () {
+					const enteredPassword = cardBody.find('.edit-password').val();
 
-				if (enteredPassword === String(storedPassword)) {
-					editContainer.show();
-				} else {
-					alert('비밀번호가 틀립니다.');
-				}
+					if (enteredPassword === String(storedPassword)) {
+						editContainer.show();
+					} else {
+						alert('비밀번호가 틀립니다.');
+					}
+				});
+
+				// 적용 버튼 클릭 시
+				applyBtn.click(async function () {
+					const editedTitle = cardBody.find('.edit-title').val();
+					const editedComment = cardBody.find('.edit-comment').val();
+
+					const confirmation = confirm('수정된 내용을 적용하시겠습니까?');
+
+					if (confirmation) {
+						cardBody.find('.card-title').text(editedTitle);
+						cardBody.find('.card-text').text(editedComment);
+
+						const modifycomment = doc(db, 'storyCard4', docId);
+
+						await updateDoc(modifycomment, {
+							name: editedTitle,
+							comment: editedComment,
+						});
+						resetEditingCard();
+					}
+				});
+
+				// 취소 버튼 클릭 시
+				cancelBtn.click(function () {
+					const confirmation = confirm('수정을 취소하시겠습니까?');
+
+					if (confirmation) {
+						resetEditingCard();
+					}
+				});
 			});
 
-			// 적용 버튼 클릭 시
-			applyBtn.click(async function () {
-				const editedTitle = cardBody.find('.edit-title').val();
-				const editedComment = cardBody.find('.edit-comment').val();
+			// 수정 취소 및 완료 시
+			function resetEditingCard() {
+				$('.card.editing').removeClass('editing').find('.edit-form').remove();
+			}
 
-				const confirmation = confirm('수정된 내용을 적용하시겠습니까?');
-
-				if (confirmation) {
-					cardBody.find('.card-title').text(editedTitle);
-					cardBody.find('.card-text').text(editedComment);
-
-					const modifycomment = doc(db, "storyCard4", docId);
-					
-					await updateDoc(modifycomment, {
-						name: editedTitle,
-            comment: editedComment
-					});
-					resetEditingCard();
-				}
+			// Top 버튼 클릭시 페이지 상단으로 이동
+			$(document).ready(function () {
+				$('#top-btn').click(function () {
+					$('html, body').animate({ scrollTop: 0 }, 200);
+					return false;
+				});
 			});
+		</script>
+	</head>
 
-			// 취소 버튼 클릭 시
-			cancelBtn.click(function () {
-				const confirmation = confirm('수정을 취소하시겠습니까?');
-
-				if (confirmation) {
-					resetEditingCard();
-				}
-			});
-		});
-
-		// 수정 취소 및 완료 시
-		function resetEditingCard() {
-			$('.card.editing').removeClass('editing').find('.edit-form').remove();
-		}
-
-		// Top 버튼 클릭시 페이지 상단으로 이동
-		$(document).ready(function () {
-			$('#top-btn').click(function () {
-				$('html, body').animate({ scrollTop: 0 }, 200);
-				return false;
-			});
-		});
-	</script>
-</head>
-
-<body>
-	<a href="index.html" id="back">X</a>
-	<div class="cardMain">
-		<div>
-			<!-- 사진첨부 -->
-			<img id="photo" class="cardImages"
-				src="https://firebasestorage.googleapis.com/v0/b/our-stage.appspot.com/o/%EC%A0%95%EB%B3%B4%EC%97%B0%EC%82%AC%EC%A7%84.jpg?alt=media&token=43416015-4c65-4eef-8f0e-1083a16ac4e0"
-				alt="이미지를 누르면 연결됩니다." />
-		</div>
-		<div class="cardStory">
-			<h1>정보연</h1>
-			<p>성실합니다</p>
-			<a href="https://developeryeon.tistory.com/">블로그</a>
-			<a href="https://github.com/developeryeon">GitHub</a>
-		</div>
-	</div>
-
-	<button id="top-btn"></button>
-
-	<form class="comment-wrap">
-		<div class="row">
-			<div class="col">
-				<input id="name" type="text" class="form-control" placeholder="닉네임" aria-label="First name" />
+	<body>
+		<a href="index.html" id="back">X</a>
+		<div class="cardMain">
+			<div>
+				<!-- 사진첨부 -->
+				<img id="photo" class="cardImages" src="https://firebasestorage.googleapis.com/v0/b/our-stage.appspot.com/o/%EC%A0%95%EB%B3%B4%EC%97%B0%EC%82%AC%EC%A7%84.jpg?alt=media&token=43416015-4c65-4eef-8f0e-1083a16ac4e0" alt="이미지를 누르면 연결됩니다." />
 			</div>
-			<div class="col-auto">
-				<label for="inputPassword2" class="visually-hidden">Password</label>
-				<input type="password" class="form-control" id="Password" placeholder="Password" />
-			</div>
-			<div class="col">
-				<input id="comment" type="text" class="form-control" placeholder="comment" aria-label="Last name" />
-			</div>
-			<div class="col-auto">
-				<button id="makeComment" type="button" class="btn btn-primary mb-3">저장</button>
-				<button type="button" class="btn btn-primary mb-3">취소</button>
+			<div class="cardStory">
+				<h1>정보연</h1>
+				<p>성실합니다</p>
+				<a href="https://developeryeon.tistory.com/">블로그</a>
+				<a href="https://github.com/developeryeon">GitHub</a>
 			</div>
 		</div>
-	</form>
 
-	<div class="commentBox">
-		<div id="card" class="row row-cols-1 row-cols-md-4 g-4">
+		<button id="top-btn"></button>
+
+		<form class="comment-wrap">
+			<div class="row">
+				<div class="col">
+					<input id="name" type="text" class="form-control" placeholder="닉네임" aria-label="First name" />
+				</div>
+				<div class="col-auto">
+					<label for="inputPassword2" class="visually-hidden">Password</label>
+					<input type="password" class="form-control" id="Password" placeholder="Password" />
+				</div>
+				<div class="col">
+					<input id="comment" type="text" class="form-control" placeholder="comment" aria-label="Last name" />
+				</div>
+				<div class="col-auto">
+					<button id="makeComment" type="button" class="btn btn-primary mb-3">저장</button>
+					<button type="button" class="btn btn-primary mb-3">취소</button>
+				</div>
+			</div>
+		</form>
+
+		<div class="commentBox">
+			<div id="card" class="row row-cols-1 row-cols-md-4 g-4"></div>
 		</div>
-	</div>
-</body>
-
+	</body>
 </html>

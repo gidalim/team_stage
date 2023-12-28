@@ -11,12 +11,7 @@
 	font-style: normal;
 }
 
-html {
-	height: 100vh;
-}
-
 body {
-	width: 100%;
 	background: linear-gradient(40deg, rgb(229, 197, 233), rgb(25, 71, 75), #15194e);
 }
 
@@ -30,19 +25,19 @@ a {
 	text-decoration-line: none;
 }
 
-#top-btn { 
-    position: fixed;
-    bottom: 40px;
-    right: 40px;
-    z-index: 999;
+#top-btn {
+	position: fixed;
+	bottom: 40px;
+	right: 40px;
+	z-index: 999;
 	background-image: url(topicon.png);
-	background-position:center;
-	background-repeat:no-repeat;	
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
-    width: 68px;
-    height: 68px;
+	background-position: center;
+	background-repeat: no-repeat;
+	border: none;
+	cursor: pointer;
+	border-radius: 50%;
+	width: 68px;
+	height: 68px;
 }
 
 .cardMain {
@@ -103,7 +98,6 @@ p {
 	justify-content: center;
 	align-items: center;
 	margin: 320px auto 50px auto;
-	
 }
 
 .comment-wrap .row #comment {
@@ -118,14 +112,12 @@ p {
 
 .commentBox {
 	margin: 50px;
-	
 }
 
 .commentBox #card {
 	position: relative;
-	margin: 5	0px;
+	margin: 5 0px;
 	word-break: break-all;
-
 	border-radius: 8px;
 	display: flex;
 	flex-direction: column;
@@ -135,10 +127,11 @@ p {
 .commentBox #card .col {
 	width: 1000px;
 	
-
 }
 
 .commentBox #card .col .card-body {
 	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
 	background-color: #e8e8e8 ;
+	background-image: linear-gradient(to right, #d7d2cc 0%, #304352 100%);
+	color: #555;
 }
