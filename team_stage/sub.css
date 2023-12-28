@@ -132,6 +132,6 @@ p {
 .commentBox #card .col .card-body {
 	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
 	background-color: #e8e8e8 ;
-	background-image: linear-gradient(to right, #d7d2cc 0%, #304352 100%);
-	color: #555;
+	background-color: #4d648d;
+	color: #cee8ff;
 }
