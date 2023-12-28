@@ -13,9 +13,11 @@
 
 body {
 	width: 100%;
-	background: linear-gradient(40deg, rgb(229, 197, 233), rgb(25, 71, 75), #15194e);
+	background: linear-gradient(40deg, rgb(171, 170, 172), rgb(180, 180, 180), #929292);
+	/* background: linear-gradient(40deg, rgb(229, 197, 233), rgb(25, 71, 75), #15194e); */
 }
 .container {
+	background-color: #bfbfbf;
 	margin-left: 20px;
 	font-family: 'Ubuntu', sans-serif;
 	height: 100vh;
@@ -38,8 +40,8 @@ body {
 	margin-bottom: 60px;
 	font-weight: 800;
 	font-size: 50px;
-	color: #fff;
-	text-shadow: 3px 4px 5px black;
+	color: #333333;
+	text-shadow: 1px 2px 3px black;
 }
 
 .photo-title {
@@ -54,7 +56,7 @@ body {
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-evenly;
-	color: #fff;
+	color: #333333;
 }
 
 .main1-right {
@@ -102,7 +104,6 @@ body {
 details {
 	font-size: 20px;
 	font-weight: bold;
-	
 }
 
 details summary {
