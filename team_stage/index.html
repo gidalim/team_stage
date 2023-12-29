@@ -20,6 +20,7 @@
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <!-- //bootstrap -->
 
+  <script type="text/javascript" src="apikey.js"></script>
   <script type="module">
     // Firebase SDK 라이브러리 가져오기
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
@@ -29,9 +30,10 @@
     import { getDocs } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js';
 
     // Firebase 구성 정보 설정
+    const API_KEY = config.apikey;
     const firebaseConfig = {
       // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-      apiKey: 'AIzaSyDcQ6Q78akg6Oo9Z2VO5APf-QQ7S7kn9DQ',
+      apiKey: API_KEY,
       authDomain: 'our-stage.firebaseapp.com',
       projectId: 'our-stage',
       storageBucket: 'our-stage.appspot.com',
@@ -105,8 +107,9 @@
         <div class="main1-left">
           <img src="https://firebasestorage.googleapis.com/v0/b/our-stage.appspot.com/o/2%EC%A1%B0.png?alt=media&token=b2ba8639-4516-4e11-b091-e01c15e2eb3b" alt="사진첨부">
         </div>
+
         <span class="main1-right">
-          <h2 style="color:#926b6a">Our_stage 2조</h2>
+          <h2 style="color:rgb(77, 71, 138)">Our_stage 2조</h2>
           <br>
           <details>
             <summary>조원 이름</summary>

@@ -16,6 +16,8 @@
 	<link rel="stylesheet" href="sub.css" />
 	<!-- //css -->
 
+	<script type="text/javascript" src="apikey.js"></script>
+
 	<script type="module">
 		// Firebase SDK 라이브러리 가져오기
 		import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js';
@@ -26,9 +28,10 @@
 
 
 		// Firebase 구성 정보 설정
+		const API_KEY = config.apikey;
 		const firebaseConfig = {
 			// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-			apiKey: 'AIzaSyDcQ6Q78akg6Oo9Z2VO5APf-QQ7S7kn9DQ',
+			apiKey: API_KEY,
 			authDomain: 'our-stage.firebaseapp.com',
 			projectId: 'our-stage',
 			storageBucket: 'our-stage.appspot.com',
